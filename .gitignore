@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+#### 父模块
+.idea
+*.iml
+
+#### 子模块
+*/*.iml
