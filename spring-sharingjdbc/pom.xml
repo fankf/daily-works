@@ -6,12 +6,11 @@
         <groupId>com.fankf</groupId>
         <artifactId>daliyworks</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.fankf</groupId>
-    <artifactId>spring-async</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>spring-async</name>
+    <artifactId>spring-sharingjdbc</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>spring-sharingjdbc</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -24,11 +23,17 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
+   <!--     <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -39,11 +44,6 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
