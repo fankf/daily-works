@@ -1,10 +1,10 @@
-package com.fankf;
+package com.fankf.json;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringSharingjdbcApplicationTests {
+class JavaJsonApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,0 +1,33 @@
+### springmvc 
+##### 注解
+> Mapping
+* @Mapping
+* @GetMapping
+* @PostMapping
+* @PutMapping
+* @DeleteMapping
+* @PatchMapping
+* @RequestMapping
+
+> result
+* @RestController
+* @RequestBody
+* @ResponseBody
+* @PathVariable
+* @RequestParam
+
+> other
+* @ControllerAdvice
+* @RestControllerAdvice
+* @CookieValue
+* @CrossOrigin
+* @ExceptionHandler
+* @InitBinder
+* @MatrixVariable
+* @RequestHeader
+* @RequestPart
+* @ResponseStatus
+* @ModelAttribute
+* @RequestAttribute
+* @SessionAttribute
+* @SessionAttributes

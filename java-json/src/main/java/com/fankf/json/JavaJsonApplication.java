@@ -1,13 +1,13 @@
-package com.fankf;
+package com.fankf.json;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringSharingjdbcApplication {
+public class JavaJsonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringSharingjdbcApplication.class, args);
+        SpringApplication.run(JavaJsonApplication.class, args);
     }
 
 }

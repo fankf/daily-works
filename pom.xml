@@ -16,6 +16,10 @@
 
     <modules>
         <module>spring-async</module>
+        <module>java-basic</module>
+        <module>java-json</module>
+        <module>spring-mvc</module>
+        <module>spring-swagger2</module>
     </modules>
     <!--父子类公用依赖-->
     <dependencyManagement>
