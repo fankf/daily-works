@@ -9,6 +9,10 @@ import java.lang.reflect.Method;
 
 public class ReflectTest {
     public static void main(String[] args) throws NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+
+        System.out.println(String.valueOf(Double.valueOf("0.090")));
+
         Student0 demo = Student0.demo();
         //获取类
         System.out.println("----------class--------------");
@@ -45,7 +49,7 @@ public class ReflectTest {
         for (Method method : methods) {
             System.out.println("methods == >" + method);
         }
-        Method setAge = clazz.getMethod("setId",Integer.TYPE);
+        Method setAge = clazz.getMethod("setId", Integer.TYPE);
         System.out.println("method setId == >" + setAge);
 
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -77,12 +81,12 @@ public class ReflectTest {
         //获取构造器
         Constructor<?>[] constructors = clazz.getConstructors();
         for (Constructor<?> constructor : constructors) {
-            System.out.println("constructors ==>"+constructor);
+            System.out.println("constructors ==>" + constructor);
         }
         //
         Constructor<?>[] declaredConstructors = clazz.getDeclaredConstructors();
         for (Constructor<?> constructor : declaredConstructors) {
-            System.out.println("declaredConstructors ==>"+constructor);
+            System.out.println("declaredConstructors ==>" + constructor);
         }
     }
 }
