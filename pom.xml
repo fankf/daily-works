@@ -33,6 +33,9 @@
 
         <module>spring-cloud-eureka</module>
         <module>spring-cloud-eureka-service</module>
+        <module>spring-cloud-ribbon</module>
+        <module>spring-cloud-feign</module>
+        <module>spring-cloud-hystrix</module>
     </modules>
     <!--父子类公用依赖-->
     <dependencyManagement>
