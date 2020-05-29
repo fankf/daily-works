@@ -1,12 +1,15 @@
 package com.fankf.springmvc.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 public class TestController {
 
     @GetMapping(value = "/get/{name}")
     public String getMappingTest(@PathVariable(value = "name") String name) {
+        log.info("TestController getMappingTest ...");
         return name;
     }
 

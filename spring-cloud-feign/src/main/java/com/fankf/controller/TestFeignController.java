@@ -10,7 +10,7 @@ public class TestFeignController {
     @Autowired
     private FeignService feignService;
 
-    @RequestMapping("/hi")
+    @RequestMapping("/test2")
     public String sayHello() {
         return feignService.sayHello("xxx");
     }
