@@ -31,8 +31,11 @@ public class Java8StreamTest {
         List<String> collect = list.stream().filter(string -> !"1".equals(string)).collect(Collectors.toList());
         System.out.println(JSON.toJSONString(collect));
         //2. 保留 过滤的条件 filter
-        collect = list.stream().filter(string -> "1".equals(string)).collect(Collectors.toList());
+        collect = list.stream().filter(string -> "2".equals(string)).collect(Collectors.toList());
         System.out.println(JSON.toJSONString(collect));
+        List<User> users2 = users.stream().filter(user -> 2 == user.getAge()).collect(Collectors.toList());
+        System.out.println("==>"+JSON.toJSONString(users2));
+
         //3. 过滤重复 distict
         collect = list.stream().distinct().collect(Collectors.toList());
         System.out.println(JSON.toJSONString(collect));

@@ -14,4 +14,9 @@ public class TestFeignController {
     public String sayHello() {
         return feignService.sayHello("xxx");
     }
+
+    @RequestMapping("/test2/tt")
+    public String sayHelloTt() {
+        return "xxx";
+    }
 }
