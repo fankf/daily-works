@@ -9,8 +9,14 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/fankf/gittest
-#          search-paths: bean
+          uri: https://github.com/fankf/daily-works
+          search-paths: properties
           username:
           password:
           default-label: master
+# 注册
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka,http://localhost:8889/eureka
+
