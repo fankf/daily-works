@@ -34,7 +34,7 @@ public class Java8StreamTest {
         collect = list.stream().filter(string -> "2".equals(string)).collect(Collectors.toList());
         System.out.println(JSON.toJSONString(collect));
         List<User> users2 = users.stream().filter(user -> 2 == user.getAge()).collect(Collectors.toList());
-        System.out.println("==>"+JSON.toJSONString(users2));
+        System.out.println("==>" + JSON.toJSONString(users2));
 
         //3. 过滤重复 distict
         collect = list.stream().distinct().collect(Collectors.toList());
@@ -69,6 +69,15 @@ public class Java8StreamTest {
         //8.flatMap(T -> Stream) 每个元素再转换成流处理
 //        list.stream().map(s-> Arrays.stream(s.split("1")).flatMap(s0 -> )).collect(Collectors.toList());
         //.
+    }
+
+
+    /**
+     * @param map
+     * @return
+     */
+    public Map<String, String> getMap(HashMap<String, String> map) {
+        return map;
     }
 }
 
