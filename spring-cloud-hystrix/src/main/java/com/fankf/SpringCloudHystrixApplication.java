@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EnableHystrix
-@EnableEurekaClient
+//@EnableEurekaClient
 public class SpringCloudHystrixApplication {
 
     public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class SpringCloudHystrixApplication {
     }
 
     @Bean
-    @LoadBalanced
+//    @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }

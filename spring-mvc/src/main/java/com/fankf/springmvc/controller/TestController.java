@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
+//@RequestMapping("/test")
 public class TestController {
 
     @GetMapping(value = "/get/{name}")

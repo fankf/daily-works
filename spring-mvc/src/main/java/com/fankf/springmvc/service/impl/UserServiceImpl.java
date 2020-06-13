@@ -3,6 +3,7 @@ package com.fankf.springmvc.service.impl;
 import com.fankf.springmvc.entity.User;
 import com.fankf.springmvc.dao.UserDao;
 import com.fankf.springmvc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-05-22 10:40:49
  */
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;

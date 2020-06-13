@@ -2,6 +2,7 @@ package com.fankf.springmvc.controller;
 
 import com.fankf.springmvc.entity.User;
 import com.fankf.springmvc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,7 +19,7 @@ public class UserController {
     /**
      * 服务对象
      */
-    @Resource
+    @Autowired
     private UserService userService;
 
     /**
