@@ -1,4 +1,4 @@
-package com.fankf.srpingkafka.controller;
+package com.fankf.srpingkafka.util;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -39,7 +39,7 @@ public class KafkaTest {
 
     //发送同步消息，获取发送的消息
     private static void sendMessageSync() throws Exception {
-        ProducerRecord<String, String> record = new ProducerRecord<>("kafka-fankf", "name", "sync");
+        ProducerRecord<String, String> record = new ProducerRecord<>("kafka-study", "name", "sync");
         RecordMetadata result = producer.send(record).get();
         System.out.println(result.topic());//kafka-study-consumer
         System.out.println(result.partition());//分区为0
