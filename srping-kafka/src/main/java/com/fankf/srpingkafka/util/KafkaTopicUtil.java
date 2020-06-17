@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutionException;
 
 @Slf4j
 public class KafkaTopicUtil {
-    public static final String TEST_TOPIC = "kafka-a";
+    public static final String TEST_TOPIC = "kafka-study";
 
     /**
      * kafka client 功能
@@ -37,11 +37,11 @@ public class KafkaTopicUtil {
 
         try (AdminClient client = AdminClient.create(props)) {
             //创建 topic
-//            createTopics(client);
+            createTopics(client);
             // 查询 topic
 //            describeTopics(client);
 //            //删除 topic
-            deleteTopics(client);
+//            deleteTopics(client);
 //
 //            //查询集群
 //            describeCluster(client);

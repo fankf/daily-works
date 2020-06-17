@@ -19,8 +19,6 @@ public class KafkaTest {
         //kafka序列化方式
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        //自定义分区分配器
-        properties.put("partitioner.class", "com.imooc.kafka.CustomPartitioner");
         producer = new KafkaProducer<>(properties);
     }
 

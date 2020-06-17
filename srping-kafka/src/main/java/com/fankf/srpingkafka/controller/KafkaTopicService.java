@@ -2,8 +2,17 @@ package com.fankf.srpingkafka.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.*;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.KafkaFuture;
+import org.apache.kafka.common.Node;
+import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.TopicPartitionInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("topic")
@@ -25,20 +33,11 @@ public class KafkaTopicService {
     @Value("${kafka.init.replication-ractor}")
     private short replicationRactor;
 
-    @Value("${spring.kafka.bootstrap-servers}")
-    private String bootStrapServers;
+    @Autowired
+    private AdminClient adminClient;
+    @Autowired
+    private KafkaConsumer consumer;
 
-    private static AdminClient adminClient = null;
-
-    private AdminClient adminClient() {
-        if (adminClient == null) {
-            Map<String, Object> map = new HashMap<>();
-            map.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapServers);
-            adminClient = AdminClient.create(map);
-        }
-        return adminClient;
-
-    }
 
     /**
      * create topic in the cluster
@@ -47,13 +46,13 @@ public class KafkaTopicService {
      */
     @GetMapping("/create/{topicName}")
     public void createTopic(@PathVariable("topicName") String topicName) {
-        List<String> collect = listAllTopics().stream().filter(topic -> topic.equals(topicName)).collect(Collectors.toList());
+        boolean exist = listAllTopics().stream().allMatch(topic -> topic.equals(topicName));
 
-        if (collect.size() == 1) {
+        if (exist) {
             log.error("{} ==> 此 TOPIC 已存在！", CLASS_NAME);
         }
         NewTopic newTopic = new NewTopic(topicName, 3, replicationRactor);
-        CreateTopicsResult ret = this.adminClient().createTopics(Arrays.asList(newTopic));
+        CreateTopicsResult ret = adminClient.createTopics(Arrays.asList(newTopic));
         Map<String, KafkaFuture<Void>> values = ret.values();
         for (String key : values.keySet()) {
             log.info("{} ==> 创建 topic 返回结果 {} ", CLASS_NAME, values.get(key));
@@ -71,11 +70,12 @@ public class KafkaTopicService {
     public Set<String> listAllTopics() {
         ListTopicsOptions options = new ListTopicsOptions();
         options.listInternal(true); // includes internal topics such as __consumer_offsets
-        ListTopicsResult topics = this.adminClient().listTopics(options);
+        ListTopicsResult topics = adminClient.listTopics(options);
         Set<String> topicNames = new HashSet<>();
         try {
             topicNames = topics.names().get();
             log.info("{} ==> Current topics in this cluster: {} ", CLASS_NAME, topicNames);
+
         } catch (InterruptedException e) {
             log.error("{} ==> listAllTopics 异常信息：{}", CLASS_NAME, e);
             e.printStackTrace();
@@ -95,7 +95,7 @@ public class KafkaTopicService {
      */
     @GetMapping("/delete/{topicName}")
     public void deleteTopics(@PathVariable("topicName") String topicName) {
-        KafkaFuture<Void> futures = this.adminClient().deleteTopics(Arrays.asList(topicName)).all();
+        KafkaFuture<Void> futures = adminClient.deleteTopics(Arrays.asList(topicName)).all();
         try {
             log.info("{} ==> Current topics in this cluster: {} ", CLASS_NAME, futures.get());
         } catch (InterruptedException e) {
@@ -104,6 +104,68 @@ public class KafkaTopicService {
         } catch (ExecutionException e) {
             log.error("{} ==> deleteTopics 异常信息：{}", CLASS_NAME, e);
             e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 查看就近 N 条信息
+     * describe the given topics
+     *
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
+    @GetMapping("/descr/{name}/{num}")
+    public void describeTopics(@PathVariable("name") String topicName, @PathVariable("num") int num) throws ExecutionException, InterruptedException {
+
+        DescribeTopicsResult ret = adminClient.describeTopics(Arrays.asList(topicName));
+        Map<String, KafkaFuture<TopicDescription>> values = ret.values();
+        Iterator<Map.Entry<String, KafkaFuture<TopicDescription>>> iterator = values.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, KafkaFuture<TopicDescription>> next = iterator.next();
+            log.info("entity key :{}", next);
+
+            List<TopicPartitionInfo> partitions = next.getValue().get().partitions();
+            for (TopicPartitionInfo e : partitions) {
+                int partitionId = e.partition();
+                Node node = e.leader();
+
+                TopicPartition topicPartition = new TopicPartition(topicName, partitionId);
+                // partition
+                Map<TopicPartition, Long> mapBeginning = consumer.beginningOffsets(Arrays.asList(topicPartition));
+                Iterator<Map.Entry<TopicPartition, Long>> itr2 = mapBeginning.entrySet().iterator();
+                long beginOffset = 0;
+                //mapBeginning只有一个元素，因为Arrays.asList(topicPartition)只有一个topicPartition
+                while (itr2.hasNext()) {
+                    Map.Entry<TopicPartition, Long> tmpEntry = itr2.next();
+                    beginOffset = tmpEntry.getValue();
+                }
+                Map<TopicPartition, Long> mapEnd = consumer.endOffsets(Arrays.asList(topicPartition));
+                Iterator<Map.Entry<TopicPartition, Long>> itr3 = mapEnd.entrySet().iterator();
+                long lastOffset = 0;
+                while (itr3.hasNext()) {
+                    Map.Entry<TopicPartition, Long> tmpEntry2 = itr3.next();
+                    lastOffset = tmpEntry2.getValue();
+                }
+                long expectedOffSet = lastOffset - num;
+
+                expectedOffSet = expectedOffSet > 0 ? expectedOffSet : 1;
+                if (expectedOffSet == 0) {
+                    num = (int) lastOffset;
+                }
+                log.info("Leader of partitionId: " + partitionId + "  is " + node + ".  expectedOffSet:" + expectedOffSet
+                        + "，  beginOffset:" + beginOffset + ", lastOffset:" + lastOffset);
+                consumer.commitSync(Collections.singletonMap(topicPartition, new OffsetAndMetadata(expectedOffSet - 1)));
+
+            }
+        }
+        consumer.subscribe(Arrays.asList(topicName));
+        while (true) {
+            ConsumerRecords<String, String> records = consumer.poll(num);
+            for (ConsumerRecord<String, String> record : records) {
+                log.info("read offset =%d, key=%s , value= %s, partition=%s\n",
+                        record.offset(), record.key(), record.value(), record.partition());
+            }
         }
     }
 
