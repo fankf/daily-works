@@ -1,6 +1,9 @@
 package com.fankf.java8;
 
-import static sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte0.newThread;
+import java.text.Collator;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Locale;
 
 /**
  * lambda 表达式
@@ -18,26 +21,45 @@ public class Java8LamdaTest {
     public static void main(String[] args) {
 //        simple();
         //interface default return 写法
-        intefaceReturn();
         newThread();
+        // compare
+        newCompare();
     }
 
     /**
      * 代替 new Runnable() 接口
      */
     private static void newThread() {
+        // runnable
+        Thread d0 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(1);
+            }
+        });
+
+        // runnable lambda
         Thread d = new Thread(() -> System.out.println("1"));
         d.start();
     }
 
-    private static void intefaceReturn() {
-//        Interface00 i00 = (a, b) -> 1;
-    }
-
-    interface Interface00 {
-        default int method00(int a, int b) {
-            return a + b;
-        }
+    /*
+     *  comparator
+     */
+    private static void newCompare() {
+        // comparetor
+        String[] strs = new String[]{"asdas", "dasfa"};
+        Arrays.sort(strs, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        // comparator lambda
+        Comparator<String> comparator = (String a, String b) -> (a.compareTo(b));
+        Arrays.sort(strs, comparator);
+        //中文排序
+        Collator collator = Collator.getInstance(Locale.CHINA);
     }
 
     /*
