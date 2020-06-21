@@ -2,6 +2,7 @@ package com.fankf.springmvc.kafka;
 
 import com.fankf.springmvc.util.SpringBeanUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -38,11 +39,11 @@ public class KafkaInitRunner implements ApplicationRunner {
 
         executorService.execute(() -> {
             KafkaInvoiceHandler kafkaInvoiceHandler = SpringBeanUtils.getBean("kafkaInvoiceHandler");
-            kafkaInvoiceHandler.onMessage(Arrays.asList("k-a"));
+            kafkaInvoiceHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"), Arrays.asList("k-a"));
         });
         executorService.execute(() -> {
             KafkaInvoiceHandler kafkaInvoiceHandler = SpringBeanUtils.getBean("kafkaInvoiceHandler");
-            kafkaInvoiceHandler.onMessage(Arrays.asList("k-b"));
+            kafkaInvoiceHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"),Arrays.asList("k-b"));
         });
         log.info("--->>>><<<<<<<<<<<<<<<<<<-----");
 //        fixedThreadPool.execute(() -> kafkaInvoiceHandler.onMessage("k-b"));

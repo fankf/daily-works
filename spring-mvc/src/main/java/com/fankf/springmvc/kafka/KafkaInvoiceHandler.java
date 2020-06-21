@@ -37,8 +37,7 @@ public class KafkaInvoiceHandler {
      *
      * @param topic
      */
-    public void onMessage(List<String> topic) {
-        KafkaConsumer kafkaConsumer = SpringBeanUtils.getBean("kafkaConsumer");
+    public void onMessage(KafkaConsumer kafkaConsumer, List<String> topic) {
         kafkaConsumer.subscribe(topic);
         log.info("队列开始监听：topic {}", topic);
         try {
