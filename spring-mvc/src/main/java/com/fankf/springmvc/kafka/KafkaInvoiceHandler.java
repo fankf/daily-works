@@ -45,9 +45,15 @@ public class KafkaInvoiceHandler {
                 ConsumerRecords<String, String> records = kafkaConsumer.poll(1000);
                 for (ConsumerRecord<String, String> record : records) {
                     log.info("offset = {}, key = {}, value = {}", record.offset(), record.key(), record.value());
-                    String messageData = new String(record.value().getBytes(), StandardCharsets.UTF_8);
-                    log.info("{}解析处理内容为:{}", LOGGER_MSG, messageData);
-                    reverse(record.topic(), messageData);
+                    try {
+
+
+                        String messageData = new String(record.value().getBytes(), StandardCharsets.UTF_8);
+                        log.info("{}解析处理内容为:{}", LOGGER_MSG, messageData);
+                        reverse(record.topic(), messageData);
+                    }catch (Exception e){
+                        log.error("消息处理异常");
+                    }
                 }
             }
         } finally {
