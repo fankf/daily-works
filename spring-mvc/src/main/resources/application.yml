@@ -33,3 +33,23 @@ mybatis:
 okHttp:
   retryCount: 3
   urls: http://localhost:8080,http://localhost:11000/get/name,http://localhost:11000/put0
+
+# Kafka topic 创建参数 partition 分区  replication-ractor 备份
+kafka:
+  init:
+    partition: 3
+    replication-ractor: 1
+  #=============== provider  =======================
+  bootstrap-servers: 127.0.0.1:9092
+  session-out: 30000
+  retry: 3
+  # 每次批量发送消息的数量
+  batch-size: 232840
+  buffer-memory: 33554432
+#  username: tx_ckafka_test
+#  password: o4dsPLezJUkmcYn1
+  username:
+  password:
+  ##=============== consumer  =======================
+  consumer-groupId: user-group-0
+  auto-commit-interval: 5000
