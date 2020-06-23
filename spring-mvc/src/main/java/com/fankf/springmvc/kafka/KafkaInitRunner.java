@@ -34,16 +34,17 @@ public class KafkaInitRunner implements ApplicationRunner {
 
         log.info("{}监听服务启动!", LOGGER_MSG);
         topicService.createTopic("k-a");
-        boolean result = topicService.createTopic("k-b");
+        boolean result = true;
+//        result=    topicService.createTopic("k-b");
         // 监听
 
         executorService.execute(() -> {
-            KafkaInvoiceHandler kafkaInvoiceHandler = SpringBeanUtils.getBean("kafkaInvoiceHandler");
+            KafkaInvoiceHandler kafkaInvoiceHandler = SpringBeanUtils.getBean(KafkaInvoiceHandler.class);
             kafkaInvoiceHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"), Arrays.asList("k-a"));
         });
         executorService.execute(() -> {
             KafkaInvoiceHandler kafkaInvoiceHandler = SpringBeanUtils.getBean("kafkaInvoiceHandler");
-            kafkaInvoiceHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"),Arrays.asList("k-b"));
+            kafkaInvoiceHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"), Arrays.asList("k-b"));
         });
         log.info("--->>>><<<<<<<<<<<<<<<<<<-----");
 //        fixedThreadPool.execute(() -> kafkaInvoiceHandler.onMessage("k-b"));

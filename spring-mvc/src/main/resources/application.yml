@@ -32,7 +32,7 @@ mybatis:
 
 okHttp:
   retryCount: 3
-  urls: http://localhost:8080,http://localhost:11000/get/name,http://localhost:11000/put0
+  urls: http://localhost:8080,http://localhost:8080/t,http://localhost:8080/r
 
 # Kafka topic 创建参数 partition 分区  replication-ractor 备份
 kafka:
@@ -53,3 +53,4 @@ kafka:
   ##=============== consumer  =======================
   consumer-groupId: user-group-0
   auto-commit-interval: 5000
+  enable.auto.commit: true

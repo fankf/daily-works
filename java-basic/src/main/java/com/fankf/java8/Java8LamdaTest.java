@@ -55,9 +55,14 @@ public class Java8LamdaTest {
                 return o1.compareTo(o2);
             }
         });
+        // ::
+        Arrays.sort(strs, String::compareTo);
         // comparator lambda
         Comparator<String> comparator = (String a, String b) -> (a.compareTo(b));
         Arrays.sort(strs, comparator);
+
+
+
         //中文排序
         Collator collator = Collator.getInstance(Locale.CHINA);
     }
