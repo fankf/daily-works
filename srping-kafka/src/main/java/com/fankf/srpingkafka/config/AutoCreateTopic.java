@@ -14,6 +14,7 @@ public class AutoCreateTopic implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        kafkaTopicService.createTopic("kafka-study");
+        kafkaTopicService.createTopic("kafka-demo");
+        kafkaTopicService.listAllTopics();
     }
 }

@@ -18,7 +18,7 @@ public class KafkaMessageConsumer {
 //    @Autowired
 //    KafkaTemplate kafkaTemplate;
 
-    public static final String topic = "kafka-study";
+    public static final String topic = "kafka-demo";
 
     @KafkaListener(topics = topic)
     public void consumer(ConsumerRecord consumerRecord) {
@@ -31,7 +31,7 @@ public class KafkaMessageConsumer {
 
     }
 
-    @KafkaListener(topicPattern = TopicName.T0)
+//    @KafkaListener(topicPattern = TopicName.T0)
     public void consumer0(ConsumerRecord consumerRecord) {
         Optional<Object> kafkaMassage = Optional.ofNullable(consumerRecord.value());
         if (kafkaMassage.isPresent()) {
