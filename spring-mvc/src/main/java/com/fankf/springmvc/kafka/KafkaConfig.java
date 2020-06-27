@@ -20,7 +20,7 @@ import java.util.Properties;
  */
 @Configuration
 @Slf4j
-public class KafkaListenerConsumerConfig {
+public class KafkaConfig {
 
     @Value("${kafka.bootstrap-servers}")
     private String servers;
@@ -36,6 +36,8 @@ public class KafkaListenerConsumerConfig {
     private String kafkaPassword;
     @Value("${kafka.username}")
     private String kafkaUserName;
+    @Value("${kafka.enable.auto.commit}")
+    private String enableAutoCommit;
 
     //    --------------consumer-----------------
     @Value("${kafka.consumer-groupId}")
@@ -47,6 +49,14 @@ public class KafkaListenerConsumerConfig {
     public AdminClient adminClient() {
         Map<String, Object> map = new HashMap<>();
         map.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, servers);
+        if (!StringUtils.isEmpty(kafkaUserName) && !StringUtils.isEmpty(kafkaPassword)) {
+            map.put("sasl.jaas.config",
+                    "org.apache.kafka.common.security.plain.PlainLoginModule required username=" + kafkaUserName + " password=" + kafkaPassword + ";");
+            map.put("authorizer.class.name", "kafka.security.auth.SimpleAclAuthorizer");
+            map.put("security.protocol", "SASL_PLAINTEXT");
+            map.put("sasl.mechanism", "PLAIN");
+
+        }
         return AdminClient.create(map);
     }
 

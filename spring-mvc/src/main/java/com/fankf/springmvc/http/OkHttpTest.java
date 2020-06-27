@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RequestMapping("ok")
 public class OkHttpTest {
     @Value("#{'${okHttp.urls}'.split(',')[0]}")
-    public static String URI;
+    public String URI;
 
     @Qualifier("okhttp3")
     @Autowired

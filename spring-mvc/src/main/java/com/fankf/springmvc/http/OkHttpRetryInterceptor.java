@@ -29,10 +29,13 @@ public class OkHttpRetryInterceptor implements Interceptor {
         int tryCount = 0;
         String url = request.url().toString();
         //总次数
-        int count = retryCount * (address.size() + 1);
+        int count = retryCount * address.size();
         while (response == null && tryCount < count) {
             String old = url;
-            url = this.switchServer(url, tryCount / retryCount, (tryCount + 1) / retryCount);
+            if((tryCount + 1) / retryCount < address.size() ){
+                url = this.switchServer(url, tryCount / retryCount, (tryCount + 1) / retryCount);
+            }
+//            url = this.switchServer(url, tryCount / retryCount, (tryCount + 1) / retryCount);
             Request newRequest = request.newBuilder().url(url).get().build();
             log.warn("Http Request is failed , Request index - {} , Old url - {} , New url = {}", tryCount, old, url);
             // retry the request
