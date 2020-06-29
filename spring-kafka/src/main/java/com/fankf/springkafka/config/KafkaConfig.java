@@ -16,7 +16,6 @@ public class KafkaConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootStrapServers;
 
-
     @Bean
     public AdminClient adminClient() {
         Map<String, Object> map = new HashMap<>();

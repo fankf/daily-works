@@ -47,15 +47,14 @@ public class KafkaInvoiceHandler {
                     log.info("partition:{} offset = {}, key = {}, value = {}",record.partition(), record.offset(), record.key(), record.value());
                     try {
 
-
                         String messageData = new String(record.value().getBytes(), StandardCharsets.UTF_8);
                         log.info("{}解析处理内容为:{}", LOGGER_MSG, messageData);
                         reverse(record.topic(), messageData);
-                        Thread.sleep(5000);
+                        Thread.sleep(1000*60*10);
                     } catch (Exception e) {
                         log.error("消息处理异常");
                     }
-//                    kafkaConsumer.commitSync();
+                    kafkaConsumer.commitSync();
                 }
             }
         } finally {
