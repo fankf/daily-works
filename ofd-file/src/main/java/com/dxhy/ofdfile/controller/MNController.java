@@ -17,9 +17,10 @@ import javax.servlet.http.HttpServletRequest;
  * @see
  */
 @RestController
+@RequestMapping("/ofd")
 public class MNController {
 
-    @RequestMapping("/a")
+    @RequestMapping("/write")
     public RESPONSE writeInfo(HttpServletRequest request,@RequestBody WRITE_OFD_FILE WRITE_OFD_FILE){
         String invoice_code = WRITE_OFD_FILE.getInvoice_code();
         String invoice_no = WRITE_OFD_FILE.getInvoice_no();
@@ -28,7 +29,7 @@ public class MNController {
         return new RESPONSE();
     }
 
-    @RequestMapping("/b")
+    @RequestMapping("/read")
     public RESPONSE getInfo(HttpServletRequest request){
         String invoice_code = request.getParameter("invoice_code");
         String invoice_no = request.getParameter("invoice_no");
