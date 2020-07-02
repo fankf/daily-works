@@ -32,12 +32,12 @@ mybatis:
 
 okHttp:
   retryCount: 3
-  urls: http://localhost:8080,http://localhost:8080/t,http://localhost:8080/r
+  urls: http://localhost:11000/post,http://localhost:8080/t,http://localhost:8080/r
 
 # Kafka topic 创建参数 partition 分区  replication-ractor 备份
 kafka:
   #=============== provider  =======================
-  bootstrap-servers: 127.0.0.1:9092
+  bootstrap-servers: 10.1.1.8:9092
   session-out: 30000
   retry: 3
   # 每次批量发送消息的数量
@@ -50,4 +50,5 @@ kafka:
   ##=============== consumer  =======================
   consumer-groupId: user-group-0
   auto-commit-interval: 5000
-  enable.auto.commit: true
+  enable.auto.commit: false
+  max-poll_num: 10

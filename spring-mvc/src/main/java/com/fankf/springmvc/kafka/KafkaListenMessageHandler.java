@@ -63,7 +63,7 @@ public class KafkaListenMessageHandler {
             case "k-a":
                 log.info("k-a aaaaaaaaaaaaaaaaaa message:{}", message);
                 break;
-            case "k-b":
+            case "k-b": // 轮询开票
                 log.info("k-b bbbbbbbbbbbbbbbbbb message:{}", message);
                 break;
         }

@@ -1,14 +1,20 @@
 package com.fankf.springmvc.http;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,8 +36,18 @@ public class OkHttpTest {
     }
 
     @RequestMapping("t")
-    public String okHttpTestt() {
-        String object = restTemplate.postForObject(URI, null, String.class);
+    public String okHttpTestt() throws UnsupportedEncodingException {
+        String nx = "你好！";
+//        String encode = URLEncoder.encode(nx, "UTF-8");
+        HttpHeaders headers = new HttpHeaders();
+        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
+        headers.setContentType(type);
+        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+
+        String jsonStr = JSONObject.toJSONString(nx);
+
+        HttpEntity formEntity = new HttpEntity( jsonStr ,headers);
+        String object = restTemplate.postForObject(URI, formEntity, String.class);
         return object;
     }
 

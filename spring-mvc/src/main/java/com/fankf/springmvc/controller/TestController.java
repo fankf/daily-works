@@ -3,6 +3,9 @@ package com.fankf.springmvc.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.URLDecoder;
+
 @RestController
 @Slf4j
 //@RequestMapping("/test")
@@ -10,7 +13,7 @@ public class TestController {
 
     @GetMapping(value = "/get/{name}")
     public String getMappingTest(@PathVariable(value = "name") String name) {
-        log.info("TestController getMappingTest ...");
+        log.info("TestController getMappingTest ... name :{} ", name);
         return name;
     }
 
@@ -20,8 +23,10 @@ public class TestController {
     }
 
     @PostMapping(value = "/post")
-    public String postMappingTest(@RequestBody String name) {
-        return name;
+    public String postMappingTest(HttpServletRequest request, @RequestBody String name) {
+        String decode = URLDecoder.decode(name);
+        log.info("TestController getMappingTest ... name :{} ", decode);
+        return decode;
     }
 
     @DeleteMapping(value = "/delete")

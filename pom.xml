@@ -43,6 +43,18 @@
     <!--父子类公用依赖-->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.47</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.8.1</version>
+            </dependency>
+
             <!--所有的模块都会有-->
             <dependency>
                 <groupId>org.projectlombok</groupId>

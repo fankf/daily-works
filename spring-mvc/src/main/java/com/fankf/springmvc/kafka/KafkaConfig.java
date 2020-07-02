@@ -3,6 +3,7 @@ package com.fankf.springmvc.kafka;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,6 +46,9 @@ public class KafkaConfig {
     @Value("${kafka.auto-commit-interval}")
     private String autoCommitInterval;
 
+    @Value("${kafka.max-poll-num}")
+    private String maxPollNum;
+
     @Bean
     @Scope("prototype")
     public KafkaConsumer kafkaConsumer() {
@@ -61,7 +65,8 @@ public class KafkaConfig {
             props.put("sasl.mechanism", "PLAIN");
         }
 
-        props.put("enable.auto.commit", "true");
+        props.put("enable.auto.commit", enableAutoCommit);
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxPollNum);
         props.put("auto.offset.reset", "earliest");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
