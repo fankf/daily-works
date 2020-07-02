@@ -46,21 +46,6 @@ public class KafkaConfig {
     private String autoCommitInterval;
 
     @Bean
-    public AdminClient adminClient() {
-        Map<String, Object> map = new HashMap<>();
-        map.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, servers);
-        if (!StringUtils.isEmpty(kafkaUserName) && !StringUtils.isEmpty(kafkaPassword)) {
-            map.put("sasl.jaas.config",
-                    "org.apache.kafka.common.security.plain.PlainLoginModule required username=" + kafkaUserName + " password=" + kafkaPassword + ";");
-            map.put("authorizer.class.name", "kafka.security.auth.SimpleAclAuthorizer");
-            map.put("security.protocol", "SASL_PLAINTEXT");
-            map.put("sasl.mechanism", "PLAIN");
-
-        }
-        return AdminClient.create(map);
-    }
-
-    @Bean
     @Scope("prototype")
     public KafkaConsumer kafkaConsumer() {
         Properties props = new Properties();

@@ -23,8 +23,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Slf4j
 public class KafkaInitRunner implements ApplicationRunner {
     private final static String LOGGER_MSG = "(Kafka监听启动类)";
+
     @Autowired
     KafkaTopicService topicService;
+//    @Autowired
+//    KafkaListenMessageHandler kafkaInvoiceHandler;
+//    @Autowired
+//    KafkaConsumer kafkaConsumer;
 
     public static ExecutorService executorService = Executors.newFixedThreadPool(6);
 
@@ -35,19 +40,18 @@ public class KafkaInitRunner implements ApplicationRunner {
         log.info("{}监听服务启动!", LOGGER_MSG);
         topicService.createTopic("k-a");
         boolean result = true;
-//        result=    topicService.createTopic("k-b");
-        // 监听
 
         executorService.execute(() -> {
-            KafkaInvoiceHandler kafkaInvoiceHandler = SpringBeanUtils.getBean(KafkaInvoiceHandler.class);
-            kafkaInvoiceHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"), Arrays.asList("k-a"));
+            KafkaListenMessageHandler kafkaListenMessageHandler = SpringBeanUtils.getBean(KafkaListenMessageHandler.class);
+            kafkaListenMessageHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"), Arrays.asList("k-a"));
         });
         executorService.execute(() -> {
-            KafkaInvoiceHandler kafkaInvoiceHandler = SpringBeanUtils.getBean("kafkaInvoiceHandler");
-            kafkaInvoiceHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"), Arrays.asList("k-b"));
+            KafkaListenMessageHandler kafkaListenMessageHandler = SpringBeanUtils.getBean("kafkaInvoiceHandler");
+            kafkaListenMessageHandler.onMessage(SpringBeanUtils.getBean("kafkaConsumer"), Arrays.asList("k-b"));
         });
         log.info("--->>>><<<<<<<<<<<<<<<<<<-----");
-//        fixedThreadPool.execute(() -> kafkaInvoiceHandler.onMessage("k-b"));
+
+//        new Thread(() -> kafkaListenMessageHandler.onMessage(kafkaConsumer,Arrays.asList("k-b"))).start();
 
         if (result) {
             log.info("{}监听服务启动成功!", LOGGER_MSG);

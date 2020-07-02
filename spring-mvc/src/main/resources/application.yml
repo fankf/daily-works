@@ -36,9 +36,6 @@ okHttp:
 
 # Kafka topic 创建参数 partition 分区  replication-ractor 备份
 kafka:
-  init:
-    partition: 3
-    replication-ractor: 1
   #=============== provider  =======================
   bootstrap-servers: 127.0.0.1:9092
   session-out: 30000

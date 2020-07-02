@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class KafkaMessageService {
 
-
     @Autowired
     private KafkaProducer kafkaProducer;
 
@@ -41,6 +40,4 @@ public class KafkaMessageService {
 
 //        kafkaProducer.close();
     }
-
-
 }

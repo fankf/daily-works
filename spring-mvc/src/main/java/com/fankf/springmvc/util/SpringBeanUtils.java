@@ -19,12 +19,10 @@ import java.util.Map;
 public class SpringBeanUtils implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         SpringBeanUtils.applicationContext = applicationContext;
     }
-
     public static <T> T getBean(String beanName) {
         if (applicationContext.containsBean(beanName)) {
             return (T) applicationContext.getBean(beanName);
@@ -32,9 +30,7 @@ public class SpringBeanUtils implements ApplicationContextAware {
             return null;
         }
     }
-
     public static <T> T getBean(Class<T> clazz) {
-        return applicationContext != null ? applicationContext.getBean(clazz) : null;
+        return applicationContext.getBean(clazz);
     }
-
 }
