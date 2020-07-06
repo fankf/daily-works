@@ -31,8 +31,8 @@ mybatis:
 # 自定义
 
 okHttp:
-  retryCount: 3
-  urls: http://localhost:11000/post,http://localhost:8080/t,http://localhost:8080/r
+  retryCount: 1
+  urls: http://localhost:11000/get/aaaa,http://localhost:11000/get/a,http://localhost:8080/r
 
 # Kafka topic 创建参数 partition 分区  replication-ractor 备份
 kafka:
@@ -52,3 +52,7 @@ kafka:
   auto-commit-interval: 5000
   enable.auto.commit: false
   max-poll_num: 10
+
+
+z-username: 123
+z-password: 123

@@ -38,21 +38,21 @@ public class OfdController {
      */
     @RequestMapping("/write")
     public RESPONSE insertBean() throws IOException {
-        URL resource = getClass().getClassLoader().getResource("file/1.txt");
-        File file = new File(resource.getPath());
-        FileReader reader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(reader);
-        StringBuffer sb = new StringBuffer();
-        String line = bufferedReader.readLine();
-        while (line != null) {
-            sb.append(line);
-            line = bufferedReader.readLine();
-        }
-        reader.close();
-        bufferedReader.close();
+//        URL resource = getClass().getClassLoader().getResource("file/1.txt");
+//        File file = new File(resource.getPath());
+//        FileReader reader = new FileReader(file);
+//        BufferedReader bufferedReader = new BufferedReader(reader);
+//        StringBuffer sb = new StringBuffer();
+//        String line = bufferedReader.readLine();
+//        while (line != null) {
+//            sb.append(line);
+//            line = bufferedReader.readLine();
+//        }
+//        reader.close();
+//        bufferedReader.close();
 
         Base64.Encoder encoder = Base64.getEncoder();
-        byte[] encode = encoder.encode(sb.toString().getBytes("UTF-8"));
+        byte[] encode = encoder.encode("zzzzzzzzzzzzzzzzzzzddddddddddddddddasfasdfas".getBytes("UTF-8"));
         WRITE_OFD_FILE ofdFile = new WRITE_OFD_FILE();
         ofdFile.setInvoice_code("12345678");
         ofdFile.setInvoice_no("123456");

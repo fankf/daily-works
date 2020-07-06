@@ -1,5 +1,6 @@
 package com.fankf.springmvc.controller;
 
+import com.fankf.springmvc.config.PropertiesFiled;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ public class TestController {
     @GetMapping(value = "/get/{name}")
     public String getMappingTest(@PathVariable(value = "name") String name) {
         log.info("TestController getMappingTest ... name :{} ", name);
+        name = PropertiesFiled.filed().getUsername();
         return name;
     }
 
