@@ -35,12 +35,4 @@ public class OKHttpUtil {
         return request;
     }
 
-    public static void main(String[] args) throws IOException {
-        List<String> strings = Arrays.asList(urlss.split(","));
-        OkHttpClient okHttpClient = okHttpClient(strings);
-        String name = "name";
-        RequestBody requestBody = RequestBody.create(name.getBytes());
-        Response execute = okHttpClient.newCall(getRequest(strings.get(0), requestBody, null)).execute();
-        System.out.println(execute);
-    }
 }

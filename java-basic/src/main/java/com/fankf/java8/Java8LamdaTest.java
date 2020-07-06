@@ -1,9 +1,14 @@
 package com.fankf.java8;
 
+import org.springframework.util.StringUtils;
+
 import java.text.Collator;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Locale;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
 
 /**
  * lambda 表达式
@@ -24,6 +29,44 @@ public class Java8LamdaTest {
         newThread();
         // compare
         newCompare();
+        //Predicates  逻辑 与或非
+        Predicate<String> predicate = (s) -> s.length() > 0;
+        boolean test = predicate.negate().test("1");
+        System.out.println(test);
+        Predicate<String> zz = StringUtils::isEmpty;
+        boolean test1 = zz.test("");
+        System.out.println(test1);
+
+        //Functions 流式处理
+        Function<Integer, String> function = String::valueOf;
+        Function<Integer, Integer> integerIntegerFunction = function.andThen(String::length);
+        Function<String, String> compose = function.compose(String::length);
+        Integer apply = integerIntegerFunction.apply(123);
+        System.out.println(apply);
+        System.out.println(compose.apply("123123"));
+
+        //Supplier 供应商 创建新对象
+        Supplier<Date> date = Date::new;
+        Date date1 = date.get();
+        System.out.println(date1);
+
+        //Consumer 接收参数 无返回
+        Consumer<String> consumer = (a) -> System.out.println(a + "123");
+        consumer.accept("123");
+
+        //Comparator 比较器
+        Comparator<String> comparator = String::compareTo;
+        int bb = comparator.compare("1", "b");
+        int bb1 = comparator.reversed().compare("1", "b");
+        System.out.println(bb + "-----" + bb1);
+
+        // Optional
+        Optional<Object> empty = Optional.empty();
+        Optional<Object> a = Optional.of("a");
+        Optional<Object> a1 = Optional.ofNullable("a1");
+        empty.isPresent(); //false
+        empty.get();
+
     }
 
     /**
@@ -60,7 +103,6 @@ public class Java8LamdaTest {
         // comparator lambda
         Comparator<String> comparator = (String a, String b) -> (a.compareTo(b));
         Arrays.sort(strs, comparator);
-
 
 
         //中文排序
