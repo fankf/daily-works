@@ -1,13 +1,14 @@
 package com.fankf.java8;
 
+import com.fankf.bean.People;
+import com.fankf.bean.Student0;
+import org.junit.Test;
 import org.springframework.util.StringUtils;
 
 import java.text.Collator;
+import java.time.LocalDate;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 
 /**
@@ -23,56 +24,51 @@ import java.util.function.Supplier;
  * @see
  */
 public class Java8LamdaTest {
-    public static void main(String[] args) {
-//        simple();
-        //interface default return 写法
-        newThread();
-        // compare
-        newCompare();
-        //Predicates  逻辑 与或非
-        Predicate<String> predicate = (s) -> s.length() > 0;
-        boolean test = predicate.negate().test("1");
-        System.out.println(test);
-        Predicate<String> zz = StringUtils::isEmpty;
-        boolean test1 = zz.test("");
-        System.out.println(test1);
+    //  方法引用和数组引用
+    @Test
+    public void lambda0(){
+        //一个参数
+        Supplier<Student0> su0 = Student0::new;
+        System.out.println(su0.get());
+        //2 个参数
+        Function<Integer,Student0> su1 = Student0::new;
+        System.out.println(su1.apply(12));
+        //3 个参数
+        BiFunction<Integer,String,Student0> su2 = Student0::new;
+        System.out.println(su2.apply(12,"ZZZZ"));
 
-        //Functions 流式处理
-        Function<Integer, String> function = String::valueOf;
-        Function<Integer, Integer> integerIntegerFunction = function.andThen(String::length);
-        Function<String, String> compose = function.compose(String::length);
-        Integer apply = integerIntegerFunction.apply(123);
+        //数组引用
+        Function<Integer,int[]> function = int[]::new;
+        int[] apply = function.apply(22);
         System.out.println(apply);
-        System.out.println(compose.apply("123123"));
 
-        //Supplier 供应商 创建新对象
-        Supplier<Date> date = Date::new;
-        Date date1 = date.get();
-        System.out.println(date1);
+    }
 
-        //Consumer 接收参数 无返回
-        Consumer<String> consumer = (a) -> System.out.println(a + "123");
-        consumer.accept("123");
+    //核心lambda
+    @Test
+    public void testLambdaCore() {
+        // 无返回 一个参数
+        Consumer<Integer> consumer = System.out::println;
+        consumer.accept(123);
 
-        //Comparator 比较器
-        Comparator<String> comparator = String::compareTo;
-        int bb = comparator.compare("1", "b");
-        int bb1 = comparator.reversed().compare("1", "b");
-        System.out.println(bb + "-----" + bb1);
+        // 一个返回 一个参数 函数式
+        Function<String, Integer> fun = Integer::valueOf;
+        System.out.println(fun.apply("123"));
 
-        // Optional
-        Optional<Object> empty = Optional.empty();
-        Optional<Object> a = Optional.of("a");
-        Optional<Object> a1 = Optional.ofNullable("a1");
-        empty.isPresent(); //false
-        empty.get();
+        //无参数 有返回
+        Supplier<People> supplier = People::new;
+        System.out.println(supplier.get());
 
+        //一个参数 返回 boolean
+        Predicate<String> predicate = String::isEmpty;
+        System.out.println(predicate.test(""));
     }
 
     /**
      * 代替 new Runnable() 接口
      */
-    private static void newThread() {
+    @Test
+    public void newThread() {
         // runnable
         Thread d0 = new Thread(new Runnable() {
             @Override
@@ -89,7 +85,8 @@ public class Java8LamdaTest {
     /*
      *  comparator
      */
-    private static void newCompare() {
+    @Test
+    public void newCompare() {
         // comparetor
         String[] strs = new String[]{"asdas", "dasfa"};
         Arrays.sort(strs, new Comparator<String>() {
