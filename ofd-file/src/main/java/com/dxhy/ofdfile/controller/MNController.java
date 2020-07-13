@@ -4,6 +4,7 @@ import com.dxhy.ofdfile.FileUtils;
 import com.dxhy.ofdfile.protocol.DataInfo;
 import com.dxhy.ofdfile.protocol.RESPONSE;
 import com.dxhy.ofdfile.protocol.WRITE_OFD_FILE;
+import lombok.extern.slf4j.Slf4j;
 import org.omg.CORBA.Environment;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ import java.io.IOException;
  */
 @RestController
 @RequestMapping("/ofd")
+@Slf4j
 public class MNController {
 
     @RequestMapping("/write")
@@ -30,6 +32,8 @@ public class MNController {
         String invoice_code = WRITE_OFD_FILE.getInvoice_code();
         String invoice_no = WRITE_OFD_FILE.getInvoice_no();
         String ofd_content_base64 = WRITE_OFD_FILE.getOfd_content_base64();
+
+        log.info("接收参数： invoice_code {} invoice_no {} ofd_content_base64 ：{} ", invoice_code, invoice_no, ofd_content_base64);
 //        DataInfo.map.put(invoice_code+invoice_no,ofd_content_base64);
         RESPONSE response = new RESPONSE();
         try {
@@ -50,6 +54,7 @@ public class MNController {
     public RESPONSE getInfo(HttpServletRequest request) {
         String invoice_code = request.getParameter("invoice_code");
         String invoice_no = request.getParameter("invoice_no");
+        log.info(" read 接收参数： invoice_code {} invoice_no {} ", invoice_code, invoice_no);
 //        String message = DataInfo.map.get(invoice_code + invoice_no);
         RESPONSE response = new RESPONSE();
         String message;

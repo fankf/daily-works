@@ -2,10 +2,13 @@ package com.dxhy.ofdfile.controller;
 
 import com.dxhy.ofdfile.protocol.RESPONSE;
 import com.dxhy.ofdfile.protocol.WRITE_OFD_FILE;
+import com.dxhy.ofdfile.utils.L5Util;
+import com.qq.l5.L5sys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +36,13 @@ public class OfdController {
     @Value("${tx-url.read}")
     private String readUtl;
 
+    @Value("${l5.modId:64020545}")
+    private int modId;
+    @Value("${l5.cmdId:131073}")
+    private int cmdId;
+    @Value("${l5.host:pay.weixin.qq.com}")
+    private String host;
+
     /**
      * 解析文件转换成base64 调用 微信接口 写入数据
      */
@@ -51,24 +61,56 @@ public class OfdController {
 //        reader.close();
 //        bufferedReader.close();
 
-        Base64.Encoder encoder = Base64.getEncoder();
-        byte[] encode = encoder.encode("zzzzzzzzzzzzzzzzzzzddddddddddddddddasfasdfas".getBytes("UTF-8"));
-        WRITE_OFD_FILE ofdFile = new WRITE_OFD_FILE();
-        ofdFile.setInvoice_code("12345678");
-        ofdFile.setInvoice_no("123456");
-        ofdFile.setOfd_content_base64(new String(encode));
-        HttpEntity httpEntity = new HttpEntity(ofdFile);
-        String name = Thread.currentThread().getName();
+        try {
+            Base64.Encoder encoder = Base64.getEncoder();
+            byte[] encode = encoder.encode("zzzzzzzzzzzzzzzzzzzddddddddddddddddasfasdfas".getBytes("UTF-8"));
+            WRITE_OFD_FILE ofdFile = new WRITE_OFD_FILE();
+            ofdFile.setInvoice_code("12345678");
+            ofdFile.setInvoice_no("123456");
+            ofdFile.setOfd_content_base64(new String(encode));
+            String name = Thread.currentThread().getId() + "";
+            log.info("线程{} ====>>微信上传数据接口 写入的文件数据 {}  ........", name, ofdFile);
 
-        log.info("{} ====>> 写入数据 {}  ........", name, ofdFile);
-
-        RESPONSE response = restTemplate.postForObject(writeUrl, httpEntity, RESPONSE.class);
-        log.info("{} ====>> ==> 返回 {} ........", name, response);
-        if (response == null) {
-            return response;
+            // 调用L5鉴权开始===============================================
+            L5Util l5Util = new L5Util();
+            L5sys.QosRequest qosRequest = l5Util.get(modId, cmdId);
+            if (qosRequest == null) {
+                log.error("调用L5获取路由错误，modId:{},cmdId:{}", modId, cmdId);
+            }
+            if (qosRequest != null) {
+                long start = System.currentTimeMillis();
+                // 获取L5远程路由的ip和端口
+                String httpString = "http://";
+                if (443 == qosRequest.hostPort) {
+                    httpString = "https://";
+                }
+                String ipPortUrl = qosRequest.hostIp + ":" + qosRequest.hostPort;
+//                String writeFileUrl = "https://pay.weixin.qq.com/index.php/xphp/cinvoicing/dxhyreadofdfile";
+                String writeFileUrl = httpString + ipPortUrl + "/index.php/xphp/cinvoicing/dxhywriteofdfile";
+                log.info("线程{}，调用微信上传接口地址为：{}", name, writeFileUrl);
+                // 设置host请求头信息
+                HttpHeaders headers = new HttpHeaders();
+                headers.add(HttpHeaders.HOST, host);
+                log.info("微信上传数据接口请求头{}:{}", HttpHeaders.HOST, host);
+                HttpEntity httpEntity = new HttpEntity(ofdFile, headers);
+                RESPONSE response = restTemplate.postForObject(writeFileUrl, httpEntity, RESPONSE.class);
+                long end = System.currentTimeMillis();
+                log.info("线程{}，调用微信上传接口地址：{}，响应报文:{}", name, response);
+                int tcCode = -1;
+                if (response != null) {
+                    if ("0".equals(response.getReturn_code())) {
+                        tcCode = 0;
+                    }
+                }
+                log.info("调用微信更新接口调用结果：tcCode{}", tcCode, writeFileUrl);
+                l5Util.ApiRouteResultUpdate(qosRequest, tcCode, (int) (end - start));
+                // 调用L5鉴权结束=========================================================
+                return response;
+            }
+        } catch (Exception e) {
+            log.error("调用文件上传错误:", e);
         }
-        return response;
-
+        return null;
     }
 
     /**
