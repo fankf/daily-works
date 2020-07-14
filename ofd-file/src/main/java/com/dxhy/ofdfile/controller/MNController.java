@@ -1,19 +1,15 @@
 package com.dxhy.ofdfile.controller;
 
-import com.dxhy.ofdfile.FileUtils;
-import com.dxhy.ofdfile.protocol.DataInfo;
+import com.dxhy.ofdfile.OFDFileUtils;
 import com.dxhy.ofdfile.protocol.RESPONSE;
 import com.dxhy.ofdfile.protocol.WRITE_OFD_FILE;
 import lombok.extern.slf4j.Slf4j;
-import org.omg.CORBA.Environment;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -37,7 +33,7 @@ public class MNController {
 //        DataInfo.map.put(invoice_code+invoice_no,ofd_content_base64);
         RESPONSE response = new RESPONSE();
         try {
-            FileUtils.write(invoice_code + invoice_no, ofd_content_base64);
+            OFDFileUtils.write(invoice_code + invoice_no, ofd_content_base64);
         } catch (IOException e) {
             e.printStackTrace();
             response.setReturn_code("9999");
@@ -59,7 +55,7 @@ public class MNController {
         RESPONSE response = new RESPONSE();
         String message;
         try {
-            message = FileUtils.read(invoice_code + invoice_no);
+            message = OFDFileUtils.read(invoice_code + invoice_no);
         } catch (IOException e) {
             e.printStackTrace();
             response.setReturn_code("9999");
