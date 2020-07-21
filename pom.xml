@@ -55,6 +55,12 @@
                 <version>3.8.1</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>28.2-android</version>
+            </dependency>
+
             <!--所有的模块都会有-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
