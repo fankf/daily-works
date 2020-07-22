@@ -32,9 +32,10 @@ public class OFDFileUtils {
 
     public static String read(String fileName) throws IOException {
         String readPath = path();
-        File file0 = new File(readPath + fileName + ".ofd");
+        File file0 = new File(readPath + fileName + ".OFD");
         byte[] bytes = FileUtils.readFileToByteArray(file0);
-        return new String(bytes, Charset.defaultCharset());
+        byte[] encode = Base64Utils.encode(bytes);
+        return new String(encode, Charset.defaultCharset());
     }
 
     public static void write(String fileName, String data) throws IOException {
@@ -46,7 +47,7 @@ public class OFDFileUtils {
             file.mkdirs();
         }
         try {
-            File file0 = new File(writePath + fileName + ".ofd");
+            File file0 = new File(writePath + fileName + ".OFD");
             if (!file0.exists()) {
                 file0.createNewFile();
             }
