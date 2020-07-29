@@ -1,3 +1,4 @@
+/*
 package com.fankf.springmvc.kafka;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,11 +12,13 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+*/
 /**
  * 开票业务监听
  *
  * @author ZSC-DXHY
- */
+ *//*
+
 @Component
 @Scope("prototype")
 @Slf4j
@@ -25,11 +28,13 @@ public class KafkaListenMessageHandler {
     @Autowired
     private KafkaMessageService kafkaMessageService;
 
-    /**
+    */
+/**
      * 监听数据
      *
      * @param topic
-     */
+     *//*
+
     public void onMessage(KafkaConsumer kafkaConsumer, List<String> topic) {
         kafkaConsumer.subscribe(topic);
         log.info("队列开始监听：topic {}", topic);
@@ -53,11 +58,13 @@ public class KafkaListenMessageHandler {
     }
 
 
-    /**
+    */
+/**
      * 业务处理
      *
      * @param message
-     */
+     *//*
+
     private void handle(String topic, String message) {
         switch (topic) {
             case "k-a":
@@ -71,3 +78,4 @@ public class KafkaListenMessageHandler {
     }
 
 }
+*/

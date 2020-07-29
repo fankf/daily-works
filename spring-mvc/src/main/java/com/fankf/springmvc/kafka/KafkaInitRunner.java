@@ -1,3 +1,4 @@
+/*
 package com.fankf.springmvc.kafka;
 
 import com.fankf.springmvc.util.SpringBeanUtils;
@@ -60,3 +61,4 @@ public class KafkaInitRunner implements ApplicationRunner {
         }
     }
 }
+*/

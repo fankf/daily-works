@@ -1,3 +1,4 @@
+/*
 package com.fankf.springmvc.kafka;
 
 import lombok.extern.slf4j.Slf4j;
@@ -14,12 +15,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
+*/
 /**
  * @author fan
  * @create 2020-06-21 10:10
  * @description
  * @see
- */
+ *//*
+
 @Component
 @Slf4j
 public class KafkaTopicService {
@@ -27,11 +30,13 @@ public class KafkaTopicService {
     @Autowired
     AdminClient adminClient;
 
-    /**
+    */
+/**
      * create topic in the cluster
      *
      * @param topicName
-     */
+     *//*
+
     @GetMapping("/create/{topicName}")
     public boolean createTopic(@PathVariable("topicName") String topicName) {
         boolean exist = listAllTopics().stream().allMatch(topic -> topic.equals(topicName));
@@ -49,12 +54,14 @@ public class KafkaTopicService {
 
     }
 
-    /**
+    */
+/**
      * print all topics in the cluster
      *
      * @throws ExecutionException
      * @throws InterruptedException
-     */
+     *//*
+
     @GetMapping("/list")
     public Set<String> listAllTopics() {
         ListTopicsOptions options = new ListTopicsOptions();
@@ -76,3 +83,4 @@ public class KafkaTopicService {
 
     }
 }
+*/

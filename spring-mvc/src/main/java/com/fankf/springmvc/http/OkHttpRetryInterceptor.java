@@ -1,8 +1,10 @@
 package com.fankf.springmvc.http;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpMethod;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -24,6 +26,7 @@ public class OkHttpRetryInterceptor implements Interceptor {
     //    @NotNull
     @Override
     public Response intercept(Chain chain) throws IOException {
+        log.info("address -> {}", JSON.toJSONString(address));
         Request request = chain.request();
         //移除头部参数
         request = request.newBuilder()
@@ -32,7 +35,12 @@ public class OkHttpRetryInterceptor implements Interceptor {
                 .build();
         // try the request
         Response response = this.doRequest(chain, request);
-        int tryCount = 0;
+
+        //****   请求参数   *******
+        String method = request.method();
+        Headers headers = request.headers();
+        RequestBody body = request.body();
+        int tryCount = 1;
         String url = request.url().toString();
         //总次数
         int count = retryCount * address.size();
@@ -42,7 +50,21 @@ public class OkHttpRetryInterceptor implements Interceptor {
                 url = this.switchServer(url, tryCount / retryCount, (tryCount + 1) / retryCount);
             }
 //            url = this.switchServer(url, tryCount / retryCount, (tryCount + 1) / retryCount);
-            Request newRequest = request.newBuilder().url(url).get().build();
+            Request newRequest = null;
+
+            if (HttpMethod.GET.name().equals(method)) {
+                newRequest = request.newBuilder()
+                        .url(url)
+                        .headers(headers)
+                        .get()
+                        .build();
+            } else if (HttpMethod.POST.name().equals(method)) {
+                newRequest = request.newBuilder()
+                        .url(url)
+                        .headers(headers)
+                        .post(body)
+                        .build();
+            }
             log.warn("Http Request is failed , Request index - {} , Old url - {} , New url = {}", tryCount, old, url);
             // retry the request
             tryCount++;
@@ -68,7 +90,7 @@ public class OkHttpRetryInterceptor implements Interceptor {
     /**
      * set contentType in headers
      *
-     * @param response
+     * @param request
      * @throws IOException
      */
     private void setHeaderContentType(Request request) throws IOException {

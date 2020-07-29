@@ -37,7 +37,7 @@ public class WebConfig {
             System.exit(0);
         }
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new OkHttpRetryInterceptor(count, urls))
+                .addInterceptor(new OkHttpRetryInterceptor(1, urls))
                 .retryOnConnectionFailure(true)
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)

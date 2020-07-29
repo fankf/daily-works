@@ -1,3 +1,4 @@
+/*
 package com.fankf.springmvc.kafka;
 
 import lombok.extern.slf4j.Slf4j;
@@ -9,9 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+*/
 /**
  * 发送消息
- */
+ *//*
+
 @RestController
 @Slf4j
 public class KafkaMessageService {
@@ -41,3 +44,4 @@ public class KafkaMessageService {
 //        kafkaProducer.close();
     }
 }
+*/

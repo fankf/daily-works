@@ -1,3 +1,4 @@
+/*
 package com.fankf.springmvc.kafka;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +17,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+*/
 /**
  * 获取kafka consumer
- */
+ *//*
+
 @Configuration
 @Slf4j
 public class KafkaConfig {
@@ -99,3 +102,4 @@ public class KafkaConfig {
     }
 
 }
+*/
