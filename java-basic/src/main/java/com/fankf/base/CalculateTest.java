@@ -1,7 +1,9 @@
 package com.fankf.base;
 
 import com.google.common.util.concurrent.AtomicDouble;
+import org.springframework.util.Base64Utils;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 
 /**
@@ -14,7 +16,7 @@ import java.math.BigDecimal;
  * ***************************************
  */
 public class CalculateTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
         System.out.println("------------");
 
 
@@ -31,5 +33,9 @@ public class CalculateTest {
         System.out.println(v==0);
         System.out.println(v<0);
 
+
+        byte[] bytes = Base64Utils.decodeFromUrlSafeString("eyJERFFRUENIIjoiUFMyMDIwMDgwNjA5MTU0NzQzMzAiLCJTVEFUVVNfQ09ERSI6IjAxMDAwMCIsIlNUQVRVU19NRVNTQUdFIjoi5Y-R56Wo6K-35rGC5o6l5pS25oiQ5YqfIn0");
+        String s = new String(bytes, "UTF-8");
+        System.out.println(s);
     }
 }
