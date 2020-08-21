@@ -3,11 +3,11 @@ package com.fankf.java8;
 import com.fankf.bean.People;
 import com.fankf.bean.Student0;
 import org.junit.Test;
-import org.springframework.util.StringUtils;
 
 import java.text.Collator;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Locale;
 import java.util.function.*;
 
 
