@@ -21,16 +21,6 @@ import java.util.Optional;
  */
 public class OptionalTest {
 
-    // java11
-    @Test
-    public void test2(){
-        Optional<String> s = Optional.of("123");
-        boolean empty = s.isEmpty();
-        boolean present = s.isPresent();
-        System.out.println(empty);
-        System.out.println(present);
-    }
-
     @Test
     public void test1(){
         Boy boy = new Boy();
