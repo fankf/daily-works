@@ -9,7 +9,7 @@ import java.lang.reflect.Proxy;
 public class MyProxy {
     public static void main(String[] args) {
         Class[] clazz = {UserService.class};
-        UserServiceImpl service = new UserServiceImpl();
+        UserService service = new UserServiceImpl();
         UserService userService = (UserService) Proxy.newProxyInstance(MyProxy.class.getClassLoader(), clazz, new MyInvocationHandler(service));
         userService.add(1,1);
     }
