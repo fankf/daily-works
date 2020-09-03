@@ -39,6 +39,7 @@
         <module>spring-cloud-ribbon</module>
         <module>spring-cloud-feign</module>
         <module>spring-cloud-hystrix</module>
+        <module>spring-basic</module>
     </modules>
     <!--父子类公用依赖-->
     <dependencyManagement>

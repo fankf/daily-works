@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-22 10:40:46
  */
-public class User implements Serializable {
+public class User extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 241248071503770418L;
     
     private Integer id;

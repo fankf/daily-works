@@ -55,6 +55,12 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public List<User> insertUsers(List<User> user) {
+         userDao.insertData(user);
+        return user;
+    }
+
     /**
      * 修改数据
      *

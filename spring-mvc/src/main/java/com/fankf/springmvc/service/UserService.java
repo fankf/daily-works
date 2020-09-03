@@ -35,6 +35,7 @@ public interface UserService {
      * @return 实例对象
      */
     User insert(User user);
+    List<User> insertUsers(List<User> user);
 
     /**
      * 修改数据

@@ -45,6 +45,7 @@ public interface UserDao {
      * @return 影响行数
      */
     int insert(User user);
+    int insertData(@Param("list") List<User> user);
 
     /**
      * 修改数据
