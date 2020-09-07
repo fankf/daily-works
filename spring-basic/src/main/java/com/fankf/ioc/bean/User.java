@@ -1,35 +1,16 @@
 package com.fankf.ioc.bean;
 
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
 /**
  * fankunfeng
  * 2020-09-03 10:41
  */
+@Component
 public class User {
-    private String id;
-    private String name;
-    private String age;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
+    public void add(){
+        System.out.println(" add ......");
     }
 }
