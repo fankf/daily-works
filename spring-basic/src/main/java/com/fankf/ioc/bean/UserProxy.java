@@ -2,6 +2,7 @@ package com.fankf.ioc.bean;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,12 +13,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserProxy {
 
-    @Before(value = "execution(* com.fankf.ioc.bean.User.add(..))")
-    public void before(){
+
+    @Before(value = "pointcut()")
+    public void before() {
         System.out.println("before ...");
     }
 
-    public void after(){
+    @Pointcut(value = "execution(* com.fankf.ioc.bean.User.add(..))")
+    public void pointcut() {
         System.out.println("before ...");
     }
 }
