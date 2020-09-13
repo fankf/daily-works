@@ -1,4 +1,4 @@
-package com.fankf.ioc.bean;
+package com.fankf.aop.bean;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;

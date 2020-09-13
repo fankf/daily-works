@@ -1,4 +1,4 @@
-package com.fankf.ioc.bean;
+package com.fankf.aop.bean;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -19,7 +19,7 @@ public class UserProxy {
         System.out.println("before ...");
     }
 
-    @Pointcut(value = "execution(* com.fankf.ioc.bean.User.add(..))")
+    @Pointcut(value = "execution(* com.fankf.aop.bean.User.add(..))")
     public void pointcut() {
         System.out.println("before ...");
     }
