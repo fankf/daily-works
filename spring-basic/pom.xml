@@ -12,9 +12,31 @@
     <artifactId>spring-basic</artifactId>
 
     <properties>
-        <spring-version>5.1.8.RELEASE</spring-version>
+        <spring-version>5.1.7.RELEASE</spring-version>
     </properties>
     <dependencies>
+        <!--log-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+
         <!--ioc-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -52,6 +74,12 @@
             <artifactId>spring-aspects</artifactId>
             <version>${spring-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
@@ -84,5 +112,10 @@
             <artifactId>druid</artifactId>
             <version>1.1.9</version>
         </dependency>
+
+     <!--   <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>-->
     </dependencies>
 </project>

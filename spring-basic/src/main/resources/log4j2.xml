@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--设置成trace可以看到所有，OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL-->
+<Configuration status="INFO">
+    <!--首先配置appender -->
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <!--指定所有logger,如果没有设置，默认成root-->
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
