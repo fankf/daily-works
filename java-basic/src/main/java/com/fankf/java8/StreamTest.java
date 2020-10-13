@@ -38,6 +38,14 @@ public class StreamTest {
 
     // collect
     @Test
+    public void testz() {
+
+        List<String> integers = Arrays.asList("3","1","22");
+        String collect = integers.stream().collect(joining("','","'","'"));
+        System.out.println(collect);
+    }
+
+    @Test
     public void test() {
         //toList
         List<Student1> list = Student1.list();
