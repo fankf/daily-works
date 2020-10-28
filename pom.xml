@@ -41,6 +41,7 @@
         <module>spring-cloud-hystrix</module>
         <module>spring-basic</module>
         <module>basic-redis</module>
+        <module>basic-lee</module>
     </modules>
     <!--父子类公用依赖-->
     <dependencyManagement>
