@@ -73,8 +73,6 @@ public class LeeCode2 {
     }
 
 
-    // 1->9->9->null
-    // 9-> null
     public static void main(String[] args) {
         ListNode node1 = new ListNode(3, null);
         node1 = new ListNode(4, node1);

@@ -3,6 +3,7 @@ package com.fankf.springmvc.util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
@@ -32,7 +33,7 @@ public class RestWebServiceUtil {
      * @param string
      * @return
      */
-    public static String doPost(String url, String string) {
+    public static String doPost(String url, String string,MediaType mediaType) {
         log.info("{}请求传输的参数URL:{},String：{}", CLASSNAME, url, string);
         ResponseEntity<String> forEntity = template.postForEntity(url, string, String.class);
         HttpHeaders headers = forEntity.getHeaders();
