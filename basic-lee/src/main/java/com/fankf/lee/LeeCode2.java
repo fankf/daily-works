@@ -23,52 +23,71 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/add-two-numbers
  */
 public class LeeCode2 {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
         int k1 = 0;
         int k2 = 0;
         int kk = 0;
         int zz = 0;
-        while (l1 != null){
+        while (l1 != null) {
             k1 += (int) Math.pow(10, kk) * l1.val;
             l1 = l1.next;
             kk++;
 
         }
-        while (l2 != null){
+        while (l2 != null) {
             k2 += (int) Math.pow(10, zz) * l2.val;
             l2 = l2.next;
             zz++;
         }
         int k = k1 + k2;
-        kk  = kk < zz ? zz :kk;
+        kk = kk < zz ? zz : kk;
+        kk = k / (int) Math.pow(10, kk) >= 1 ? kk + 1 : kk;
 
         ListNode l3 = null;
         do {
             kk--;
             k1 = k / (int) Math.pow(10, kk);
-            l3 = new ListNode(k1,l3);
+            k = k % (int) Math.pow(10, kk);
+            l3 = new ListNode(k1, l3);
 
-        } while (kk == -1);
+        } while (kk != 0);
         return l3;
     }
 
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode result = new ListNode(0);
+        ListNode now = result;
+        int index = 0;
+        while (l1 != null || l2 != null || index != 0) {
+            int m = l1 == null ? 0 : l1.val;
+            int n = l2 == null ? 0 : l2.val;
+            int v = m + n + index;
+            ListNode node = new ListNode(v % 10);
+            index = v / 10;
+            now.next = node;
+            now = node;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+        }
+        return result.next;
+    }
 
 
+    // 1->9->9->null
+    // 9-> null
     public static void main(String[] args) {
-        System.out.println(1 / 10);
-        ListNode l1 = null;
-        l1 = new ListNode(3,l1);
-        l1 = new ListNode(4,l1);
-        l1 = new ListNode(2,l1);
-        ListNode l2 = null;
-        l2 = new ListNode(4,l2);
-        l2 = new ListNode(6,l2);
-        l2 = new ListNode(5,l2);
+        ListNode node1 = new ListNode(3, null);
+        node1 = new ListNode(4, node1);
+        node1 = new ListNode(2, node1);
+        ListNode node4 = new ListNode(4, null);
+        node4 = new ListNode(6, node4);
+        node4 = new ListNode(5, node4);
         LeeCode2 leeCode2 = new LeeCode2();
-        ListNode linkedList = leeCode2.addTwoNumbers(l1, l2);
+        ListNode linkedList = leeCode2.addTwoNumbers(node1, node4);
         System.out.println(linkedList);
     }
 }
+
 class ListNode {
     int val;
     ListNode next;
