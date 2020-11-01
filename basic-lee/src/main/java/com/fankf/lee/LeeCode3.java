@@ -27,14 +27,12 @@ package com.fankf.lee;
  */
 public class LeeCode3 {
     public int lengthOfLongestSubstring(String s) {
-        int start = 0, now = 0, end = 1;
-        int maxStart = 0, maxEnd = 1, length = 0;
+        int start = 0, now = 0, end = 0;
+        int length = 0;
         while (end < s.length()) {
             while (now < end) {
                 if (s.charAt(now) == s.charAt(end)) {
                     if (end - start > length) {
-                        maxStart = start;
-                        maxEnd = end;
                         length = end - start;
                     }
                     now++;
@@ -43,16 +41,17 @@ public class LeeCode3 {
                     now++;
                 }
             }
+
+            now = start;
             end++;
         }
-        System.out.println(maxStart);
-        System.out.println(maxEnd);
-        System.out.println(length);
-        return 0;
+        length = s.length() -start > length ? s.length() -start :length;
+        return length;
     }
 
     public static void main(String[] args) {
         LeeCode3 leeCode3 = new LeeCode3();
-        leeCode3.lengthOfLongestSubstring("aasds2131fasfas");
+        int i = leeCode3.lengthOfLongestSubstring("asda");
+        System.out.println(i);
     }
 }
