@@ -36,6 +36,44 @@ package com.fankf.lee;
  */
 public class LeeCode6 {
     public String convert(String s, int numRows) {
-        return null;
+        if(s == null || s.length() < 2){
+            return s;
+        }
+        /**
+         *   有什么特点呢，假如做成一个矩阵的话，宽度是可以确定的，长度可以求出来，
+         *   每个点的坐标也都可以求出来生成一个二维数组，然后每行处理
+         *   int x = s.length();
+         *   if(x/(rowNum-1)%2 == 0 )  i轴坐标等于 x/(rowNum-1)
+         *   if(x/(rowNum-1)%2 == 1 )  i轴坐标等于 x/(rowNum-1) + x%(rowNum-1）
+         *
+         *   完成之后每行拼接成最终值
+         *   --------------------------------------------------------------
+         *   但是看完别的答案觉得自己的办法太笨了，看了别人的思路这里再次编写下
+         */
+
+        StringBuffer[] sbs = new StringBuffer[numRows];
+        for (int i = 0; i < numRows; i++) {
+            sbs[i] = new StringBuffer();
+        }
+        for (int i = 0; i < s.length(); i++) {
+            int division = i / (numRows-1);
+            int remainder = i % (numRows-1);
+            if(division % 2 == 0){
+                sbs[remainder].append(s.charAt(i));
+            }
+            if(division % 2 != 0){
+                sbs[numRows-1-remainder].append(s.charAt(i));
+            }
+        }
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < sbs.length; i++) {
+            result.append(sbs[i]);
+        }
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        LeeCode6 leeCode6 = new LeeCode6();
+        System.out.println(leeCode6.convert("0123456789",3));
     }
 }
