@@ -45,11 +45,7 @@ class SpringMvcApplicationTests {
 
 //        String post = HttpUtils.httpPost("http://110.83.51.109:10080/350100888888001_0/InvoiceService", req);
 //        System.out.println(post);
-        String str = "<?xml version=\"1.0\" encoding=\"GBK\"?>\n" +
-                "<COM_OUTPUT><ID>0118</ID><CODE>0000</CODE><MESS>success</MESS><DATA>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iR0JLIj8+CjxGUFhUPjxPVVRQVVQ+PElEPjAx\n" +
-                "MTg8L0lEPjxDT0RFPjAwMDA8L0NPREU+PE1FU1M+c3VjY2VzczwvTUVTUz48REFUQT48TFhTQz45\n" +
-                "OTk8L0xYU0M+PFpaTEZTSj4yMDIwLTExLTAzIDE1OjU5OjAwPC9aWkxGU0o+PEpTUFNKPjIwMjAt\n" +
-                "MTEtMDQgMTQ6MjU6MjE8L0pTUFNKPjwvREFUQT48L09VVFBVVD48L0ZQWFQ+</DATA></COM_OUTPUT>";
+        String str = "<?xml version=\"1.0\" encoding=\"GBK\"?> <COM_OUTPUT><ID>0118</ID><CODE>0000</CODE><MESS>success</MESS><DATA>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iR0JLIj8+CjxGUFhUPjxPVVRQVVQ+PElEPjAx MTg8L0lEPjxDT0RFPjAwMDA8L0NPREU+PE1FU1M+c3VjY2VzczwvTUVTUz48REFUQT48TFhTQz43 MjA8L0xYU0M+PFpaTEZTSj4yMDIwLTExLTA5IDEwOjMxOjAwPC9aWkxGU0o+PEpTUFNKPjIwMjAt MTEtMDkgMTc6Mzk6MjY8L0pTUFNKPjwvREFUQT48L09VVFBVVD48L0ZQWFQ+</DATA></COM_OUTPUT>";
 
         if (StringUtils.isBlank(str)) {
             log.error(" 纳税人识别号 ： {} 离线税盘查询失败");

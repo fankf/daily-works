@@ -39,6 +39,9 @@ public class LeeCode6 {
         if(s == null || s.length() < 2){
             return s;
         }
+        if(numRows == 1){
+            return s;
+        }
         /**
          *   有什么特点呢，假如做成一个矩阵的话，宽度是可以确定的，长度可以求出来，
          *   每个点的坐标也都可以求出来生成一个二维数组，然后每行处理
