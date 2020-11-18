@@ -1,7 +1,7 @@
 package com.fankf.json.jackson;
 
 import com.fankf.json.Demo;
-import com.fankf.json.bean.Student;
+import com.fankf.bean.Student;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

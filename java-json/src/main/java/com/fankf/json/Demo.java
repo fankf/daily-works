@@ -1,6 +1,6 @@
 package com.fankf.json;
 
-import com.fankf.json.bean.Student;
+import com.fankf.bean.Student;
 
 import java.util.ArrayList;
 import java.util.List;

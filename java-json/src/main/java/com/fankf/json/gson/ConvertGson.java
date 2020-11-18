@@ -1,7 +1,7 @@
 package com.fankf.json.gson;
 
 import com.fankf.json.Demo;
-import com.fankf.json.bean.Student;
+import com.fankf.bean.Student;
 import com.google.gson.Gson;
 
 public class ConvertGson {
