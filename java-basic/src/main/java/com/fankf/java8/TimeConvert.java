@@ -55,42 +55,42 @@ public class TimeConvert {
 
         // 8. 字符串 转 LocalDateTime,LocalDate,LocalTime
         DateTimeFormatter localDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime localDateTime3 = LocalDateTime.parse("2020-11-11 00:00:00",localDateTimeFormatter);
-        String formatLocalDateTime = localDateTime3.format(localDateTimeFormatter);
+        LocalDateTime localDateTime3 = LocalDateTime.parse("2020-11-11 00:00:00",localDateTimeFormatter); //2020-11-11T00:00
+        String formatLocalDateTime = localDateTime3.format(localDateTimeFormatter);// 2020-11-11 00:00:00
 
         DateTimeFormatter localDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1 = LocalDate.parse("2020-11-11",localDateFormat);
-        String localDateString = date1.format(localDateFormat);
+        LocalDate date1 = LocalDate.parse("2020-11-11",localDateFormat);// 2020-11-11
+        String localDateString = date1.format(localDateFormat);// 2020-11-11
 
         DateTimeFormatter localTimeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalTime time = LocalTime.parse("00:00:00",localTimeFormat);
-        String localTimeString = time.format(localTimeFormat);
+        LocalTime time = LocalTime.parse("00:00:00",localTimeFormat); //00:00
+        String localTimeString = time.format(localTimeFormat);//00:00:00
 
         // 9. 两日期之间的间隔数，两个时间的间隔数,时间的比较
-        LocalDate localDateNow = LocalDate.now();
-        LocalDate localDatePlus = localDateNow.plus(10, ChronoUnit.DAYS);
-        long between = ChronoUnit.DAYS.between(localDatePlus,localDateNow);
-        boolean before = localDatePlus.isBefore(localDateNow);
+        LocalDate localDateNow = LocalDate.now(); // 2020-11-11
+        LocalDate localDatePlus = localDateNow.plus(10, ChronoUnit.DAYS);// 2020-11-21
+        long between = ChronoUnit.DAYS.between(localDatePlus,localDateNow);//-10
+        boolean before = localDatePlus.isBefore(localDateNow);//false
 
-        LocalTime localTimeNow = LocalTime.now();
-        LocalTime LocalTimePlus = localTimeNow.plus(100, ChronoUnit.MINUTES);
-        long between2 = ChronoUnit.MINUTES.between(LocalTimePlus,localTimeNow);
-        boolean after = LocalTimePlus.isAfter(localTimeNow);
+        LocalTime localTimeNow = LocalTime.now();//17:12:34.717
+        LocalTime LocalTimePlus = localTimeNow.plus(100, ChronoUnit.MINUTES);// 18:52:34.717
+        long between2 = ChronoUnit.MINUTES.between(LocalTimePlus,localTimeNow);//-100
+        boolean after = LocalTimePlus.isAfter(localTimeNow);//true
 
         // 10.其他
         // LocalDate 获取起始 LocalDateTime
-        LocalDate localDate1 = LocalDate.now();
-        LocalDateTime localDateTime4 = localDate1.atStartOfDay();
+        LocalDate localDate1 = LocalDate.now();//2020-11-11
+        LocalDateTime localDateTime4 = localDate1.atStartOfDay();//2020-11-11T00:00
         // 今天星期几
-        DayOfWeek dayOfWeek = localDate1.getDayOfWeek();
+        DayOfWeek dayOfWeek = localDate1.getDayOfWeek();//WEDNESDAY
         // 今天是一个月的第几天
-        int dayOfMonth = localDate1.getDayOfMonth();
+        int dayOfMonth = localDate1.getDayOfMonth();//11
         // 今天是一年中的第几天
-        int dayOfYear = localDate1.getDayOfYear();
-        // 是否是平年 2月28天
-        boolean leapYear = localDate1.isLeapYear();
+        int dayOfYear = localDate1.getDayOfYear();//316
+        // 是否是闰年 2月28天
+        boolean leapYear = localDate1.isLeapYear();//true
         // 10天后的日期
-        LocalDate plus = localDate1.plus(10, ChronoUnit.DAYS);
+        LocalDate plus = localDate1.plus(10, ChronoUnit.DAYS);//2020-11-21
 
 
     }

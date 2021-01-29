@@ -16,6 +16,10 @@ import java.util.List;
  * 2020-09-03 10:43
  */
 public class UserTest {
+
+
+
+
     @Test
     public void testIoc(){
         ApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");

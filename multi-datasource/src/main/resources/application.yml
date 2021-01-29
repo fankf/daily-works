@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  jmx:
+    enabled: false
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: root
+  s0:
+    datasource:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+  s1:
+    datasource:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test2?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location:
+  type-aliases-package: con.fankf.dao

@@ -33,5 +33,7 @@ public class ConvertFastjson {
         String var1 = Demo.getStudentString();;
         Student stu1 = JSON.parseObject(var1, Student.class);
         System.out.println(stu1);
+
+        // 转换map
     }
 }

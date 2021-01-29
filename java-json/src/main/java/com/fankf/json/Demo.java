@@ -2,7 +2,9 @@ package com.fankf.json;
 
 import com.fankf.bean.Student;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class Demo {
@@ -27,6 +29,5 @@ public class Demo {
     public static String getStudentString() {
         return "{\"studentNo\":\"12\",\"studentName\":\"xiaoming\",\"studentAge\":12}";
     }
-
 
 }

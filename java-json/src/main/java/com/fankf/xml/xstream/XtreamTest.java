@@ -61,6 +61,7 @@ public class XtreamTest {
         stream.aliasField("name",Student.class,"studentName");
         classMixed(student,stream);
     }
+
     // 混叠
     private static void mixed(Student student, XStream stream) {
         simpleConvert(student,stream);

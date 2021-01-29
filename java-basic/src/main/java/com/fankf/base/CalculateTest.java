@@ -5,6 +5,15 @@ import org.springframework.util.Base64Utils;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * **************************************
@@ -18,24 +27,12 @@ import java.math.BigDecimal;
 public class CalculateTest {
     public static void main(String[] args) throws UnsupportedEncodingException {
         System.out.println("------------");
+        LocalDate localDate = LocalDate.now().minusMonths(1);
+        System.out.println(localDate);
+        LocalDateTime localDateTime = LocalDateTime.now().plusSeconds(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        Instant instant = localDateTime.toInstant(ZoneOffset.ofHours(8));
+        java.util.Date from = Date.from(instant);
 
-
-
-    final AtomicDouble[] diff = {new AtomicDouble(0.00)};
-
-    double remain = diff[0].addAndGet(0.01 * -1);
-        System.out.println(remain);
-
-
-        double v = new BigDecimal(0.00).divide(new BigDecimal(0.01), 2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        System.out.println(v);
-        System.out.println(v==0.00);
-        System.out.println(v==0);
-        System.out.println(v<0);
-
-
-        byte[] bytes = Base64Utils.decodeFromUrlSafeString("eyJERFFRUENIIjoiUFMyMDIwMDgwNjA5MTU0NzQzMzAiLCJTVEFUVVNfQ09ERSI6IjAxMDAwMCIsIlNUQVRVU19NRVNTQUdFIjoi5Y-R56Wo6K-35rGC5o6l5pS25oiQ5YqfIn0");
-        String s = new String(bytes, "UTF-8");
-        System.out.println(s);
     }
 }
