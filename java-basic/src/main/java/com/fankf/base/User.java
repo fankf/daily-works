@@ -4,7 +4,7 @@ package com.fankf.base;
  * @author fankunfeng
  * 2021-03-30 11:40
  */
-public class User {
+public class User implements Cloneable{
 
     private String id;
     private String username;
@@ -121,5 +121,10 @@ public class User {
                 ", spare2='" + spare2 + '\'' +
                 ", spare3='" + spare3 + '\'' +
                 '}';
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

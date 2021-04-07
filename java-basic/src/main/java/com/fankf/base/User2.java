@@ -4,7 +4,12 @@ package com.fankf.base;
  * @author fankunfeng
  * 2021-03-30 11:40
  */
-public class User2 {
+public class User2 implements Cloneable{
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     private String id;
     private String username;

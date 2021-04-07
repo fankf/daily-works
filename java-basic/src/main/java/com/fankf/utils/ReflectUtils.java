@@ -1,8 +1,5 @@
 package com.fankf.utils;
 
-import com.fankf.base.User;
-import com.fankf.base.User2;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -10,7 +7,6 @@ import java.util.List;
 
 /**
  * 反射相关工具类
- * 只在当前类的方法中，不包括基类
  */
 public class ReflectUtils {
 
@@ -81,22 +77,5 @@ public class ReflectUtils {
             }
         }
         return result;
-    }
-
-    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-//        User user = new User();
-//        user.setAddress("123");
-//        user.setPassword("1231221");
-//        User2 user1 = new User2();
-//        copy(user, user1);
-//        System.out.println(user1);
-        User2 user2 = new User2();
-        Object setId = invoke(user2, "setId", new Object[]{"123"});
-        System.out.println(user2.getId());
-
-        Object setId2 = invoke(user2, "setIds", new Object[]{"123",123231});
-
-        System.out.println(setId2);
-
     }
 }

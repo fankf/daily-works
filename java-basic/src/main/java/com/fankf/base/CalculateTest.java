@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
  */
 public class CalculateTest {
     public static void main(String[] args) throws IOException {
-
         if ("12".compareTo("2") > -1) {
             System.out.println("---233333-");
         }
