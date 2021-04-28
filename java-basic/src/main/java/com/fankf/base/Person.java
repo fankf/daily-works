@@ -13,10 +13,10 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-public class Person implements Cloneable{
-    private String id ;
+public class Person implements Cloneable {
+    private String id;
     private Object explain;
-    private String name ;
+    private String name;
     private List<Child> childList;
     private int[] scores;
     private Sex sex;

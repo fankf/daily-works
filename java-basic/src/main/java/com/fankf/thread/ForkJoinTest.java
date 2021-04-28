@@ -2,6 +2,7 @@ package com.fankf.thread;
 
 import lombok.SneakyThrows;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
@@ -28,7 +29,6 @@ public class ForkJoinTest {
             this.end = end;
         }
 
-        @SneakyThrows
         @Override
         protected Integer compute() {
             int sum = 0;
@@ -42,9 +42,23 @@ public class ForkJoinTest {
                 MyRecursiveTask m1 = new MyRecursiveTask(start, mid);
                 MyRecursiveTask m2 = new MyRecursiveTask(mid + 1, end);
                 ForkJoinTask<Integer> fork = m1.fork();
-                Integer integer1 = fork.get();
+                Integer integer1 = null;
+                try {
+                    integer1 = fork.get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
                 ForkJoinTask<Integer> fork1 = m2.fork();
-                Integer integer = fork1.get();
+                Integer integer = null;
+                try {
+                    integer = fork1.get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
                 System.out.println(integer + "==="+integer1);
                 return m1.join() + m2.join();
             }

@@ -16,7 +16,7 @@ public class DataObeserver extends Observer<DataInterface>{
 
     @Override
     public void update(String key) {
-        log.info("map 数据 ：{}", JSON.toJSONString(map.values()));
+//        log.info("map 数据 ：{}", JSON.toJSONString(map.values()));
         List<DataInterface> list = map.get(key);
         if(list == null){
             list = new ArrayList<>();

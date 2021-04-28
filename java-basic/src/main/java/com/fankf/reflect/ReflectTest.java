@@ -1,15 +1,25 @@
 package com.fankf.reflect;
 
+import com.fankf.base.User;
 import com.fankf.bean.Student0;
+import org.springframework.util.StringUtils;
 
+import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class ReflectTest {
-    public static void main(String[] args) throws NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) throws NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, IntrospectionException {
 
+        User user = new User();
+        User user2 = new User();
+        user.setPassword("123");
+        user2.setPassword("123");
+
+        System.out.println(compareProperties(user,user2));
 
         System.out.println(String.valueOf(Double.valueOf("0.090")));
 
@@ -34,7 +44,38 @@ public class ReflectTest {
         int getId = (int) clazz.getMethod("getId", null).invoke(clazz, null);
         System.out.println(getId);
     }
+    public static boolean compareProperties(Object obj1, Object obj2) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+        //为空判断
+        if (obj1 == null && obj2 == null) {
+            return true;
+        } else if (obj1 == null || obj2 == null) {
+            return false;
+        }
 
+        Class<?> classType = obj1.getClass();
+        //如果传入的类型不一样则直接返回false
+        //C#中通过CompareProperties<T>中的<T>可以限定传入的类型必须一致，所以不需要该判断
+        if (classType != obj2.getClass()) {
+            return false;
+        }
+
+        Field[] fields = obj1.getClass().getDeclaredFields();//获得所有字段
+        for (Field field : fields) {
+            PropertyDescriptor propertyDescriptor = new PropertyDescriptor(field.getName(), classType);//获得类中字段的属性描述
+            Method getMethod = propertyDescriptor.getReadMethod();//从属性描述中获得字段的get方法
+            //通过getMethod.invoke(obj)方法获得obj对象中该字段get方法返回的值
+            Object invoke = getMethod.invoke(obj1);
+            Object invoke2 = getMethod.invoke(obj2);
+            if((invoke == null && invoke2 !=null) || (invoke != null && invoke2 ==null)){
+                return false;
+            }
+            if (!invoke.equals(invoke2)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     private static void clazz(Class<?> clazz) {
         //类名
         String name = clazz.getName();
