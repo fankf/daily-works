@@ -23,25 +23,38 @@
     </properties>
 
     <modules>
-        <module>spring-async</module>
+        <module>basic-lee</module>
         <module>java-basic</module>
         <module>java-json</module>
+        <module>basic-redis</module>
 
+        <!--spring-->
+        <module>spring-async</module>
+        <module>spring-basic</module>
+        <module>spring-kafka</module>
         <module>spring-mvc</module>
         <module>spring-mycat</module>
+        <module>spring-sharingjdbc</module>
 
+        <!--dubbo-->
         <module>dubbo-api</module>
         <module>dubbo-consumer</module>
         <module>dubbo-provider</module>
-
+        <!--spring cloud-->
         <module>spring-cloud-eureka</module>
         <module>spring-cloud-eureka-service</module>
         <module>spring-cloud-ribbon</module>
         <module>spring-cloud-feign</module>
         <module>spring-cloud-hystrix</module>
-        <module>spring-basic</module>
-        <module>basic-redis</module>
-        <module>basic-lee</module>
+        <module>spring-cloud-zuul</module>
+        <module>spring-cloud-sleuth</module>
+        <module>spring-cloud-config</module>
+        <module>spring-cloud-config-client</module>
+
+        <!--webflux-->
+        <module>spring-webflux-annotation</module>
+        <module>spring-webflux-demo</module>
+        <module>spring-webflux-function</module>
     </modules>
     <!--父子类公用依赖-->
     <dependencyManagement>
