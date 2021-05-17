@@ -4,15 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.fankf</groupId>
-        <artifactId>daliyworks</artifactId>
+        <artifactId>spring-cloud</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.fankf</groupId>
     <artifactId>spring-cloud-zuul</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud-zuul</name>
-    <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>

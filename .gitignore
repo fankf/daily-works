@@ -7,3 +7,5 @@
 #### 子模块
 */*.iml
 */target
+*/*/*.iml
+*/*/target
