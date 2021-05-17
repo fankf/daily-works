@@ -1,0 +1,12 @@
+# 应用名称
+spring:
+    application:
+      name: daily-start-nacos-config
+    cloud:
+      nacos:
+        server-addr: localhost:8848
+      config:
+        file-extension: yml
+        name: demo-config
+        group: ${spring.profiles.active}
+        namespace: 1bf1268d-6e4b-4d07-a4a3-3424c9583aeb
