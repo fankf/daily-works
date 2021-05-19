@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @Reference
     private TestSayHelloService testSayHelloService;
+
     @RequestMapping("/")
-    public String test(){
+    public String test() {
         return testSayHelloService.sayHello();
     }
 }

@@ -1,0 +1,13 @@
+server:
+  port: 9000
+
+# 应用名称
+spring:
+  application:
+    name: daily-start-demo
+  cloud:
+    nacos:
+      discovery:
+        # 指定nacos server地址
+        server-addr: localhost:8848
+
