@@ -35,6 +35,7 @@
         <module>spring-cloud-alibaba</module>
         <module>spring-cloud</module>
         <module>spring-base</module>
+        <module>daily-module</module>
     </modules>
 
     <!--父子类公用依赖-->
