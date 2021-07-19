@@ -26,5 +26,6 @@
         <module>basic-redis</module>
         <module>java-json</module>
         <module>java-basic</module>
+        <module>base-dependenies</module>
     </modules>
 </project>

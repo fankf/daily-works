@@ -3,12 +3,26 @@ package com.fankf.utils;
 import com.alibaba.fastjson.JSON;
 import org.springframework.util.AntPathMatcher;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PPTest {
-    public static void main(String[] args) {
 
+    /**
+     *
+     * @param args
+     * @throws FileNotFoundException 文档未找到
+     */
+    public static void main(String[] args){
+
+
+        File file = new File("");
+        try {
+            InputStream inputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+
+        }
 
         List<String> list = new ArrayList<>();
         list.add("1");

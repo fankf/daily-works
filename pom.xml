@@ -36,18 +36,19 @@
         <module>spring-cloud</module>
         <module>spring-base</module>
         <module>daily-module</module>
+        <module>base-denpendenies</module>
     </modules>
 
     <!--父子类公用依赖-->
     <dependencyManagement>
         <dependencies>
-            <dependency>
+           <!-- <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
 
-            <!--tools-->
+            &lt;!&ndash;tools&ndash;&gt;
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
@@ -58,7 +59,7 @@
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
             </dependency>
-            <!--orm-->
+            &lt;!&ndash;orm&ndash;&gt;
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -68,6 +69,13 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>-->
+            <dependency>
+                <groupId>com.fankf</groupId>
+                <artifactId>base-denpendenies</artifactId>
+                <version>1.0</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

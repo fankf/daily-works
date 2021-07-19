@@ -1,0 +1,14 @@
+# 应用名称
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @avtiveProfile@
+
+
+
+logging:
+  config: classpath:logback-spring.xml
+
+
+
