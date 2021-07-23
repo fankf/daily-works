@@ -1,16 +1,9 @@
 package com.fankf.bean;
 
-import lombok.ToString;
-
-import java.util.List;
-
-@ToString
 public class People {
     private int sex;
-    protected int age;
-    public List<String> tag;
-    String color;
-
+    private String username;
+    private int age;
 
     public int getSex() {
         return sex;
@@ -20,5 +13,28 @@ public class People {
         this.sex = sex;
     }
 
+    public String getUsername() {
+        return username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "People{" +
+                "sex=" + sex +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

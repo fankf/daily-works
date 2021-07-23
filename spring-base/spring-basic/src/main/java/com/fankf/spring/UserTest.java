@@ -1,4 +1,4 @@
-package com.fankf.test;
+package com.fankf.spring;
 
 import com.fankf.aop.bean.User;
 import com.fankf.aop.xmlaop.Book;

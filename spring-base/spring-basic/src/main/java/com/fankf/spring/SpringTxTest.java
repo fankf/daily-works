@@ -1,4 +1,4 @@
-package com.fankf.test;
+package com.fankf.spring;
 
 import com.fankf.config.TxConfig;
 import com.fankf.tx.service.UserService;
