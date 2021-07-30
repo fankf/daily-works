@@ -6,13 +6,16 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.Base64Utils;
+
+import java.io.Serializable;
 
 /**
  * @author fankf
  * @date 2021/7/19 16:49
  * @description
  */
-public class BeanFactoryTest {
+public class BeanFactoryTest extends Base64Utils implements Serializable {
     public static void main(String[] args) {
         BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("bean1.xml"));
         People people = (People) beanFactory.getBean("people");
