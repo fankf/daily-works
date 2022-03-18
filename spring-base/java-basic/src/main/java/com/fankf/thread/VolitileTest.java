@@ -6,13 +6,22 @@ package com.fankf.thread;
  */
 public class VolitileTest {
 
-    private static  int i = 0;
+    public static void main(String[] args) {
+        for (int j = 0; j < 100; j++) {
+            new Thread(new Thread0()).start();
+            new Thread(new Thread1()).start();
+        }
+        System.out.println(i);
+    }
 
-    public static int getI() {
+    public static VolitileTest volitileTest = new VolitileTest();
+    private static int i = 0;
+
+    public int getI() {
         return i;
     }
 
-    public static void setI(int i) {
+    public void setI(int i) {
         VolitileTest.i = i;
     }
 
@@ -24,22 +33,22 @@ public class VolitileTest {
         --i;
     }
 
-    public final class Thread0 implements Runnable {
+    public static class Thread0 implements Runnable {
 
 
         @Override
         public void run() {
-            add();
-            System.out.println(i);
+            volitileTest.add();
+//            System.out.println(i);
         }
     }
 
-    public final class Thread1 implements Runnable {
+    public static class Thread1 implements Runnable {
 
         @Override
         public void run() {
-            sub();
-            System.out.println(i);
+            volitileTest.sub();
+//            System.out.println(i);
         }
     }
 }

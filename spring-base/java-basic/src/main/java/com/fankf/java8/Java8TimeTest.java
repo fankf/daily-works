@@ -1,9 +1,12 @@
 package com.fankf.java8;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
 public class Java8TimeTest {
@@ -22,5 +25,9 @@ public class Java8TimeTest {
 
         LocalDateTime localDateTime = LocalDateTime.ofEpochSecond(date.getTime(), 0, ZoneOffset.ofHours(8));
         System.out.println(localDateTime);
+
+        // 周一
+        LocalDate with = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        System.out.println(with);
     }
 }

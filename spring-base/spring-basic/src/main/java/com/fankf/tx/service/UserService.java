@@ -22,9 +22,9 @@ public class UserService {
 
     public void account(){
         logger.info("开始 ................");
-        userDao.reduceMoney();
+//        userDao.reduceMoney();
 //        int a = 1/0;
-        userDao.addMoney();
+//        userDao.addMoney();
         logger.info("结束 ................");
     }
 }

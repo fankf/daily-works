@@ -1,13 +1,16 @@
 package com.fankf.java8;
 
+import com.alibaba.fastjson.JSON;
 import com.fankf.bean.People;
 import com.fankf.bean.Student0;
 import org.junit.Test;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.Collator;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Locale;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.function.*;
 
 
@@ -27,6 +30,9 @@ public class Java8LamdaTest {
     //  方法引用和数组引用
     @Test
     public void lambda0(){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        YearMonth parse = YearMonth.parse("2011-01-01",dateTimeFormatter );
+        System.out.println(parse);
         //一个参数
         Supplier<Student0> su0 = Student0::new;
         System.out.println(su0.get());
@@ -41,7 +47,6 @@ public class Java8LamdaTest {
         Function<Integer,int[]> function = int[]::new;
         int[] apply = function.apply(22);
         System.out.println(apply);
-
     }
 
     //核心lambda

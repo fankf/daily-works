@@ -20,7 +20,7 @@ public class SendEmailTest {
     // 密码
     public static final String SendPassword = "XXXX";
     //收件人
-    public static final String RecipientAddress = "1990432344@qq.com";
+    public static final String RecipientAddress = "zhangnan,xyd@autoroad.com";
 
     // 设置消息主体信息
     public static MimeMessage getMessage(Session session) throws MessagingException, UnsupportedEncodingException, FileNotFoundException {
