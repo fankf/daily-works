@@ -1,12 +1,16 @@
 package com.fankf.spring;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.fankf.aop.bean.User;
 import com.fankf.aop.xmlaop.Book;
 import com.fankf.jdbc.bean.User1;
 import com.fankf.jdbc.service.UserService;
 import org.junit.Test;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +21,12 @@ import java.util.List;
  */
 public class UserTest {
 
-
+    @Test
+    public void test(){
+        BeanFactory context = new XmlBeanFactory(new ClassPathResource("bean1.xml"));
+        User1 user = context.getBean("user1", User1.class);
+        System.out.println(user);
+    }
 
 
     @Test

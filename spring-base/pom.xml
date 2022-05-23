@@ -25,5 +25,7 @@
         <!--java base-->
         <module>java-json</module>
         <module>java-basic</module>
+        <module>spring-canal</module>
+        <module>netty-basic</module>
     </modules>
 </project>
