@@ -23,9 +23,12 @@ public class UserTest {
 
     @Test
     public void test(){
-        BeanFactory context = new XmlBeanFactory(new ClassPathResource("bean1.xml"));
-        User1 user = context.getBean("user1", User1.class);
-        System.out.println(user);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
+//        User1 user = context.getBean("user1", User1.class);
+        Person person = context.getBean(PersonExt.class);
+//        System.out.println(user);
+        System.out.println("【实例使用】"+person);
+        context.close();
     }
 
 
@@ -41,6 +44,8 @@ public class UserTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean2.xml");
         Book user = context.getBean("book", Book.class);
         user.buy();
+
+
     }
 
     @Test

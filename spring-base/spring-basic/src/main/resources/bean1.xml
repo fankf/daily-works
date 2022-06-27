@@ -7,12 +7,16 @@
                             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <bean class="com.fankf.spring.PersonExt" name="person" init-method="myInit" destroy-method="myDestory">
+        <property name="name" value="zhangsan"/>
+    </bean>
+
+    <bean class="com.fankf.spring.MyBeanPostProcessor"/>
 
     <bean class="com.fankf.jdbc.bean.User1" name="user1">
         <property name="id" value="12"/>
         <property name="username" value="username"/>
     </bean>
-
     <!--开启注解扫描-->
     <context:component-scan base-package="com.fankf.aop"/>
     <aop:aspectj-autoproxy/>
