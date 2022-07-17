@@ -3,6 +3,7 @@ package com.fankf.spring;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.fankf.aop.bean.User;
 import com.fankf.aop.xmlaop.Book;
+import com.fankf.bean.Student;
 import com.fankf.jdbc.bean.User1;
 import com.fankf.jdbc.service.UserService;
 import org.junit.Test;
@@ -22,25 +23,29 @@ import java.util.List;
 public class UserTest {
 
     @Test
-    public void test(){
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
+    public void test() {
+        BeanFactory context = new XmlBeanFactory(new ClassPathResource("bean6.xml"));
+//        ApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
 //        User1 user = context.getBean("user1", User1.class);
         Person person = context.getBean(PersonExt.class);
+//        Student student = (Student) context.getBean("zs");
 //        System.out.println(user);
+//        System.out.println("【实例使用】"+user);
         System.out.println("【实例使用】"+person);
-        context.close();
+//        System.out.println("【实例使用】" + student.getEmail() + "-" + student.getName());
+//        context.close();
     }
 
 
     @Test
-    public void testIoc(){
+    public void testIoc() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
         User user = context.getBean("user", User.class);
         user.add();
     }
 
     @Test
-    public void testAop(){
+    public void testAop() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean2.xml");
         Book user = context.getBean("book", Book.class);
         user.buy();
@@ -49,7 +54,7 @@ public class UserTest {
     }
 
     @Test
-    public void testJdbcTemplateInsert(){
+    public void testJdbcTemplateInsert() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
         User1 user = new User1();
@@ -58,8 +63,9 @@ public class UserTest {
         int i = userService.insertUser(user);
         System.out.println(i);
     }
+
     @Test
-    public void testJdbcTemplateUpdate(){
+    public void testJdbcTemplateUpdate() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
         User1 user = new User1();
@@ -69,22 +75,25 @@ public class UserTest {
         int i = userService.updateUserById(user);
         System.out.println(i);
     }
+
     @Test
-    public void testJdbcTemplateDelete(){
+    public void testJdbcTemplateDelete() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
         int i = userService.deleteUserById(1);
         System.out.println(i);
     }
+
     @Test
-    public void testJdbcTemplateCount(){
+    public void testJdbcTemplateCount() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
         int i = userService.countUser();
         System.out.println(i);
     }
+
     @Test
-    public void testJdbcTemplateSelectOne(){
+    public void testJdbcTemplateSelectOne() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
         User1 user = userService.selectUserById(2);
@@ -92,7 +101,7 @@ public class UserTest {
     }
 
     @Test
-    public void testJdbcTemplateSelect(){
+    public void testJdbcTemplateSelect() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
         List<User1> user = userService.selectUser();
@@ -104,28 +113,28 @@ public class UserTest {
     public void testJdbcTemplateInsertBatch() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
-        Object[] o1 = {null,"Z1", 11};
-        Object[] o2 = {null,"z2", 12};
-        Object[] o3 = {null,"z3", 33};
+        Object[] o1 = {null, "Z1", 11};
+        Object[] o2 = {null, "z2", 12};
+        Object[] o3 = {null, "z3", 33};
         List<Object[]> objects = Arrays.asList(o1, o2, o3);
         int t = userService.insertBatch(objects);
         System.out.println(t);
     }
 
-        @Test
-    public void testJdbcTemplateUpdateBatch(){
+    @Test
+    public void testJdbcTemplateUpdateBatch() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
-            Object[] o1 = {"aa",12,3};
-            Object[] o2 = {"bb",12,4};
-            Object[] o3 = {"vv",12,5};
+        Object[] o1 = {"aa", 12, 3};
+        Object[] o2 = {"bb", 12, 4};
+        Object[] o3 = {"vv", 12, 5};
         List<Object[]> objects = Arrays.asList(o1, o2, o3);
         int t = userService.updateBatch(objects);
         System.out.println(t);
     }
 
     @Test
-    public void testJdbcTemplateDeleteBatch(){
+    public void testJdbcTemplateDeleteBatch() {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
         UserService userService = context.getBean("userService", UserService.class);
         Object[] o1 = {3};
