@@ -20,6 +20,10 @@ public class Person implements BeanFactoryAware, ApplicationContextAware, BeanNa
     public Person() {
         System.out.println("【构造器】调用Person的构造器实例化");
     }
+    public Person(String name) {
+        this.name = name;
+        System.out.println("【有参构造器】调用有参Person的构造器实例化");
+    }
 
     public String getName() {
         return name;

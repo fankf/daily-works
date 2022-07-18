@@ -1,6 +1,7 @@
 package com.fankf.spring;
 
 import com.alibaba.druid.support.json.JSONUtils;
+import com.fankf.UserDemo;
 import com.fankf.aop.bean.User;
 import com.fankf.aop.xmlaop.Book;
 import com.fankf.bean.Student;
@@ -13,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +23,13 @@ import java.util.List;
  * 2020-09-03 10:43
  */
 public class UserTest {
+
+    @Test
+    public void userTest() {
+        BeanFactory context = new XmlBeanFactory(new ClassPathResource("bean6.xml"));
+        UserDemo user = context.getBean("user", UserDemo.class);
+        System.out.println("【返回结果】" + user);
+    }
 
     @Test
     public void test() {

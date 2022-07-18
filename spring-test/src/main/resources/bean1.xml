@@ -7,13 +7,7 @@
                             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="book" class="com.fankf.aop.xmlaop.Book"></bean>
-    <bean id="bookProxy" class="com.fankf.aop.xmlaop.BookProxy"></bean>
-
-    <aop:config>
-        <aop:pointcut id="point" expression="execution(* com.fankf.aop.xmlaop.Book.buy(..))"></aop:pointcut>
-        <aop:aspect ref="bookProxy">
-            <aop:before method="before" pointcut-ref="point"></aop:before>
-        </aop:aspect>
-    </aop:config>
+        <bean name="user" class="com.fans.bean.User">
+                <property name="name" value="zhangsan"/>
+        </bean>
 </beans>
