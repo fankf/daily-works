@@ -1,9 +1,11 @@
 package com.fankf.spring;
 
+import cn.hutool.core.convert.NumberChineseFormatter;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.fankf.UserDemo;
 import com.fankf.aop.bean.User;
 import com.fankf.aop.xmlaop.Book;
+import com.fankf.bean.A;
 import com.fankf.bean.Student;
 import com.fankf.jdbc.bean.User1;
 import com.fankf.jdbc.service.UserService;
@@ -26,17 +28,28 @@ public class UserTest {
 
     @Test
     public void userTest() {
+        String format = NumberChineseFormatter.format(1, false);
+        System.out.println(format);
         BeanFactory context = new XmlBeanFactory(new ClassPathResource("bean6.xml"));
         UserDemo user = context.getBean("user", UserDemo.class);
         System.out.println("【返回结果】" + user);
     }
 
     @Test
+    public void test7() {
+        XmlBeanFactory context = new XmlBeanFactory(new ClassPathResource("bean7.xml"));
+//        context.setAllowCircularReferences(false);
+        A a = (A) context.getBean("a");
+        System.out.println("【实例使用】"+a);
+        System.out.println("【实例使用】"+a.getB().getC().getA().getB().getC());
+    }
+
+    @Test
     public void test() {
-        BeanFactory context = new XmlBeanFactory(new ClassPathResource("bean6.xml"));
+        BeanFactory context = new XmlBeanFactory(new ClassPathResource("bean1.xml"));
 //        ApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
 //        User1 user = context.getBean("user1", User1.class);
-        Person person = context.getBean(PersonExt.class);
+        PersonExt person = (PersonExt) context.getBean("person");
 //        Student student = (Student) context.getBean("zs");
 //        System.out.println(user);
 //        System.out.println("【实例使用】"+user);
