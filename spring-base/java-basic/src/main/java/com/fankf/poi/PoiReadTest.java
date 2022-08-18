@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 public class PoiReadTest {
     public static String outputFile = "C:\\Users\\Administrator\\Desktop\\bingTuan企业名录.xlsx";
     //    public static String outputFile3 = "C:\\Users\\Administrator\\Desktop\\湖南相关区域关键词(1).xlsx";
-    public static String outputFile3 = "C:\\Users\\Administrator\\Desktop\\湖南相关媒体名单.xlsx";
+    public static String outputFile3 = "C:\\Users\\Administrator\\Desktop\\abs二十八万北京数据.xlsx";
     public static String keypoint = "C:\\Users\\Administrator\\Desktop\\keypoint.txt";
     public static String outputFile2 = "D:\\company.txt";
 
@@ -56,7 +56,7 @@ public class PoiReadTest {
 
             for (int i = 1, readSize = read.size(); i < readSize; i++) {
                 List<String> objectList = read.get(i).stream().map(String::valueOf).collect(Collectors.toList());
-                String key = objectList.get(0).toString();
+                String key = objectList.get(2).toString();
                 keys.add(key);
 
 //            List<String> collect = objectList.stream().map(String::valueOf)

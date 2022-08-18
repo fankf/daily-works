@@ -25,6 +25,9 @@ public class User implements Cloneable{
     public void setId(String id) {
         this.id = id;
     }
+    public void setId(Integer ids) {
+        this.id = String.valueOf(ids);
+    }
 
     public String getUsername() {
         return username;
