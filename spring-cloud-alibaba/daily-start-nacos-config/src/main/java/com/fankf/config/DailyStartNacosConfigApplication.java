@@ -7,13 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DailyStartNacosConfigApplication {
 
-//    @Value("${username}")
-//    private static String username;
+    @Value("${username}")
+    private static String username;
 
     public static void main(String[] args) {
         SpringApplication.run(DailyStartNacosConfigApplication.class, args);
 
-//        System.out.println(username);
+        System.out.println(username);
     }
 
 }
