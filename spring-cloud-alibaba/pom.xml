@@ -14,5 +14,9 @@
         <module>dubbo-api</module>
         <module>dubbo-consumer</module>
         <module>dubbo-provider</module>
+        <module>dubbo-nacos-consumer</module>
+        <module>dubbo-nacos-provider</module>
+        <module>daily-start-nacos-config</module>
+        <module>daily-start-demo</module>
     </modules>
 </project>

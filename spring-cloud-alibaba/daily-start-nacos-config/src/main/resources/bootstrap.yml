@@ -2,13 +2,19 @@ server:
   port: 9001
 # 应用名称
 spring:
+  profiles:
+    active: dev
   application:
     name: daily-start-nacos-config
   cloud:
     nacos:
       server-addr: localhost:8848
-    config:
-      file-extension: yml
-      name: demo-config
-      group: ${spring.profiles.active}
-      namespace: 1bf1268d-6e4b-4d07-a4a3-3424c9583aeb
+      config:
+        file-extension: yml
+        name: demo-config
+        group: DEFAULT_GROUP
+        # 共享配置
+        shared-configs:
+          data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+          refresh: true
+
