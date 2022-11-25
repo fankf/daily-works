@@ -16,28 +16,20 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.75</version>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <!--<version>1.0.2</version>-->
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>3.2.0</version>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -74,23 +66,10 @@
             <artifactId>junit</artifactId>
         </dependency>
 
-        <!--mybatis-->
-        <!-- Spring Boot 分页插件支持引用-->
-        <!--    <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.mybatis.spring.boot</groupId>
-                        <artifactId>mybatis-spring-boot-starter</artifactId>
-                    </exclusion>
-                </exclusions>
-                <version>1.2.3</version>
-            </dependency>-->
         <!-- Spring Boot  Mybatis支持引用-->
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
         <!-- Spring Boot Mysql支持-->
@@ -111,7 +90,6 @@
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
             <version>1.4.11.1</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -132,6 +110,26 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>

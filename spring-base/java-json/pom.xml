@@ -19,9 +19,8 @@
         <!--fastjson-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.75</version>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
         </dependency>
 
         <!--gson-->
@@ -29,7 +28,6 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>${gson.version}</version>
         </dependency>
         <!--jckson springboot 默认引入-->
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
