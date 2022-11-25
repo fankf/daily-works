@@ -33,14 +33,15 @@
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-dockerfile-plugin.version>1.4.10</maven-dockerfile-plugin.version>
 
-        <mysql.connector.version>8.0.22</mysql.connector.version>
+        <mysql.connector.version>8.0.30</mysql.connector.version>
         <oracle.connector.version>12.2.0.1</oracle.connector.version>
         <postgresql.connector.version>42.2.6</postgresql.connector.version>
-        <druid.version>1.2.5</druid.version>
-        <mybatis.plus.version>3.4.2</mybatis.plus.version>
+        <druid.version>1.2.8</druid.version>
+        <mybatis.plus.version>3.5.2</mybatis.plus.version>
+        <dynamic-datasource-spring-boot-starter.version>3.5.2</dynamic-datasource-spring-boot-starter.version>
         <velocity.version>1.7</velocity.version>
 
-        <knife4j.version>2.0.8</knife4j.version>
+        <knife4j.version>3.0.3</knife4j.version>
         <jjwt.version>0.9.1</jjwt.version>
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <jakarta.validation-api.version>2.0.2</jakarta.validation-api.version>
@@ -148,16 +149,10 @@
                 <artifactId>mybatis-plus-annotation</artifactId>
                 <version>${mybatis.plus.version}</version>
             </dependency>
-            <!-- 暂未升级至3.4.2版本，单独修改为上一个版本号 -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-generator</artifactId>
-                <version>3.4.1</version>
-            </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-                <version>3.4.0</version>
+                <version>${dynamic-datasource-spring-boot-starter.version}</version>
             </dependency>
 
             <dependency>
@@ -421,7 +416,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
